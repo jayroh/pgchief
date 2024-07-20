@@ -15,6 +15,12 @@ Hence why I made this `pgchief` thing. It's a simple ruby script utilizing the
 [tty-command](https://github.com/piotrmurach/tty-command) rubygems to collect
 info, and run the correct commands.
 
+***
+
+*NOTE*: Almost nothing has been built. This is in active pre-alpha development.
+
+***
+
 ```
 $ pgchief --init # create the TOML file in your home dir (w/600 permissions)
 $ pgchief
@@ -64,3 +70,14 @@ Format of `~/.pgchief.toml`
 pgurl = "postgres://username:password@host:5432"
 backup_dir = "~/.pg_backups"
 ```
+
+***
+
+## Feature Roadmap
+
+- [ ] Create database
+- [ ] Create user
+- [ ] Give user permissions to use database
+- [ ] Back up database
+- [ ] Restore database
+- [ ] Initialize toml file

@@ -47,3 +47,5 @@ build-iPhoneSimulator/
 # intended to run in multiple environments; otherwise, check them in:
 Gemfile.lock
 .tool-versions
+
+.rspec_status

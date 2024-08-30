@@ -1,3 +1,8 @@
+require:
+ - rubocop-performance
+ - rubocop-rake
+ - rubocop-rspec
+
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
@@ -7,3 +12,11 @@ Style/StringLiterals:
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - '*.gemspec'
+
+RSpec/MultipleExpectations:
+  Max: 5

@@ -49,3 +49,4 @@ Gemfile.lock
 .tool-versions
 
 .rspec_status
+.env

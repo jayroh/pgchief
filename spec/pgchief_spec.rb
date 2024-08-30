@@ -2,6 +2,6 @@
 
 RSpec.describe Pgchief do
   it "has a version number" do
-    expect(Pgchief::VERSION).not_to be nil
+    expect(Pgchief::VERSION).not_to be_nil
   end
 end

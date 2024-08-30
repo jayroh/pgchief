@@ -2,6 +2,8 @@
 
 require "pgchief"
 
+ENV["DATABASE_URL"] = ENV.fetch("TEST_DATABASE_URL", "postgres://localhost")
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"

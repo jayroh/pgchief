@@ -4,8 +4,7 @@ module Pgchief
   module Prompt
     # Class to prompt for which database to drop
     class DropDatabase < Base
-      def self.call
-        prompt   = TTY::Prompt.new
+      def call
         database = prompt.select("Which database needs to be dropped?", Pgchief::Database.all)
         result   = Pgchief::Command::DatabaseDrop.call(database)
 

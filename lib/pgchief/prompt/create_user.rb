@@ -4,8 +4,7 @@ module Pgchief
   module Prompt
     # Class to prompt for user creation details
     class CreateUser < Base
-      def self.call
-        prompt   = TTY::Prompt.new
+      def call
         username = prompt.ask("Username:")
         password = prompt.mask("Password:")
         result   = Pgchief::Command::UserCreate.call(username, password)

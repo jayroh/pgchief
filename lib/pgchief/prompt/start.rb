@@ -4,8 +4,7 @@ module Pgchief
   module Prompt
     # Kicks off the CLI with an initial prompt
     class Start < Base
-      def self.call
-        prompt = TTY::Prompt.new
+      def call
         result = prompt.select(
           "Welcome! How can I help?",
           [

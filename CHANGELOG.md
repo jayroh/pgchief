@@ -15,6 +15,7 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 ### Fixes
 
 - GitHub now running CI successfully.
+- Newly created databases are no longer open for connection by default. `CONNECT` is revoked by default for them.
 
 ## [0.1.0] - 2024-08-30
 

@@ -11,6 +11,7 @@ module Pgchief
         raise Pgchief::Errors::DatabaseExistsError if db_exists?
 
         conn.exec("CREATE DATABASE #{database}")
+        conn.exec("REVOKE CONNECT ON DATABASE #{database} FROM PUBLIC")
 
         "Database '#{database}' created successfully!"
       rescue PG::Error => e

@@ -7,6 +7,15 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ## [Unreleased]
 
+### Additions
+
+- Add `j` and `k` keys as substitutes for `↑` and `↓`.
+- Allow exiting the program with the `esc` key.
+
+### Fixes
+
+- GitHub now running CI successfully.
+
 ## [0.1.0] - 2024-08-30
 
 - Initial release

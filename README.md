@@ -32,6 +32,11 @@ export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
 pgchief
 ```
 
+Note:
+
+1. Prompts accept both `↑` and `↓` arrows, as well as `j` and `k`.
+2. Pressing the `esc` key at any point amidst a prompt will exit out of the program.
+
 ## Development of the gem
 
 1. Clone this repo.

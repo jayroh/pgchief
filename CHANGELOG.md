@@ -9,6 +9,13 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+- Refactor `exe/pgchief` to utilize `TTY::Option` for kicking off config initialization
+- `pgchief --init` now creates a toml config file in your `$HOME`
+
+## [0.2.0] - 2024-08-30
+
+### Additions
+
 - Add `j` and `k` keys as substitutes for `↑` and `↓`.
 - Allow exiting the program with the `esc` key.
 - Add ability to grant access privileges for newly created users.
@@ -29,5 +36,6 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 - Drop user ✅
 - List databases ✅
 
-[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/jayroh/pgchief/releases/tag/v0.2.0
 [0.1.0]: https://github.com/jayroh/pgchief/releases/tag/v0.1.0

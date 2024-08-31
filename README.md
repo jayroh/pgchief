@@ -26,6 +26,10 @@ below for the feature check-list and current progress.
 ```
 gem install pgchief
 
+# To initialize the config file at `~/.pgchief.toml`:
+
+pgchief --init
+
 # make sure the DATABASE_URL is set to the connection string for a pg server's superuser
 export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
 
@@ -112,7 +116,7 @@ backup_dir = "~/.pg_backups"
 - [x] Drop user
 - [x] List databases
 - [x] Give user permissions to use database
-- [ ] Initialize toml file
+- [x] Initialize toml file
+- [ ] Display connection information
 - [ ] Back up database
 - [ ] Restore database
-- [ ] Display connection information

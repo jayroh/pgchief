@@ -7,4 +7,6 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 require "pgchief"
 
-Pgchief::Prompt::Start.call
+cli = Pgchief::Cli.new
+cli.parse(ARGV)
+cli.run

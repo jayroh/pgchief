@@ -2,6 +2,8 @@
 
 require "pg"
 require "tty-prompt"
+require "tty-option"
+require "pgchief/cli"
 require "pgchief/version"
 
 require "pgchief/database"
@@ -16,7 +18,9 @@ require "pgchief/prompt/drop_user"
 require "pgchief/prompt/user_management"
 require "pgchief/prompt/grant_database_privileges"
 
+require "pgchief/command"
 require "pgchief/command/base"
+require "pgchief/command/config_create"
 require "pgchief/command/database_create"
 require "pgchief/command/database_drop"
 require "pgchief/command/database_list"

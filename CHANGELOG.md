@@ -11,11 +11,14 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 - Add `j` and `k` keys as substitutes for `↑` and `↓`.
 - Allow exiting the program with the `esc` key.
+- Add ability to grant access privileges for newly created users.
+- Or grant privileges for existing users to database(s).
 
 ### Fixes
 
 - GitHub now running CI successfully.
 - Newly created databases are no longer open for connection by default. `CONNECT` is revoked by default for them.
+- When dropping users, loop through all the databases they have access to and revoke access before dropping them.
 
 ## [0.1.0] - 2024-08-30
 

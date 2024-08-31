@@ -111,7 +111,8 @@ backup_dir = "~/.pg_backups"
 - [x] Drop database
 - [x] Drop user
 - [x] List databases
-- [ ] Give user permissions to use database
+- [x] Give user permissions to use database
+- [ ] Initialize toml file
 - [ ] Back up database
 - [ ] Restore database
-- [ ] Initialize toml file
+- [ ] Display connection information

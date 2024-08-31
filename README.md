@@ -36,6 +36,22 @@ export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
 pgchief
 ```
 
+## Config:
+
+Format of `~/.pgchief.toml`
+
+```toml
+# Connection string to superuser account at your PG instance
+pgurl = "postgresql://username:password@host:5432"
+
+# Directory where db backups will be placed
+backup_dir = "~/.pg_backups"
+
+# [Optional] key for encryption/decryption of credentials displayed
+# in users' connection strings
+# encryption_key = "my-password"
+```
+
 Note:
 
 1. Prompts accept both `↑` and `↓` arrows, as well as `j` and `k`.
@@ -94,16 +110,6 @@ Give "rando-username" access to database(s):
    ⬡ none of the above
 
 # ... etc.
-```
-
-Format of `~/.pgchief.toml`
-
-```toml
-pgurl = "postgres://username:password@host:5432"
-backup_dir = "~/.pg_backups"
-
-# [optional] encryption key (to display hashed passwords)
-# encryption_key = "my-password"
 ```
 
 ***

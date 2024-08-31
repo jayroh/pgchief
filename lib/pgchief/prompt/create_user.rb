@@ -10,6 +10,11 @@ module Pgchief
         result   = Pgchief::Command::UserCreate.call(username, password)
 
         prompt.say result
+
+        yes_or_no(
+          "Give \"#{username}\" access to database(s)?",
+          yes: -> { Pgchief::Prompt::GrantDatabasePrivileges.call(username) }
+        )
       end
     end
   end

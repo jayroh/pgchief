@@ -25,6 +25,11 @@ module Pgchief
         ].flatten.join)
       end
 
+      def yes_or_no(question, yes: nil, no: nil) # rubocop:disable Naming/MethodParameterName
+        response = prompt.yes?(question)
+        response ? yes&.call : no&.call
+      end
+
       def prompt
         @prompt ||= TTY::Prompt.new.tap do |p|
           p.on(:keypress) do |event|

@@ -5,7 +5,12 @@ module Pgchief
     # Class to manage users
     class UserManagement < Base
       def call
-        result = prompt.select("User management", ["Create user", "Drop user", "User list"])
+        result = prompt.select("User management", [
+                                 "Create user",
+                                 "Drop user",
+                                 "User list",
+                                 "Grant database privileges"
+                               ])
 
         scope = result == "User list" ? "command" : "prompt"
         klassify(scope, result).call

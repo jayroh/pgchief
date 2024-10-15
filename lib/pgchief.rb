@@ -3,11 +3,14 @@
 require "pg"
 require "tty-prompt"
 require "tty-option"
-require "pgchief/cli"
-require "pgchief/version"
 
+require "pgchief/cli"
+require "pgchief/config"
+require "pgchief/credentials"
+require "pgchief/version"
 require "pgchief/database"
 require "pgchief/user"
+
 require "pgchief/prompt/base"
 require "pgchief/prompt/start"
 require "pgchief/prompt/create_database"

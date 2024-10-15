@@ -6,30 +6,12 @@
 /pkg/
 /spec/reports/
 /spec/examples.txt
-/test/tmp/
-/test/version_tmp/
 
 # Used by dotenv library to load environment variables.
-# .env
+.env
 
 # Ignore Byebug command history file.
 .byebug_history
-
-## Specific to RubyMotion:
-.dat*
-.repl_history
-build/
-*.bridgesupport
-build-iPhoneOS/
-build-iPhoneSimulator/
-
-## Specific to RubyMotion (use of CocoaPods):
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# vendor/Pods/
 
 ## Documentation cache and generated files:
 /.yardoc/
@@ -46,6 +28,4 @@ build-iPhoneSimulator/
 # intended to run in multiple environments; otherwise, check them in:
 Gemfile.lock
 .tool-versions
-
 .rspec_status
-.env

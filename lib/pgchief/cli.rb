@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "pry"
-
 module Pgchief
   # Command line interface and option parsing
   class Cli

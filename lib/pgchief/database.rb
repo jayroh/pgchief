@@ -6,7 +6,7 @@ module Pgchief
   # Database information and operations
   class Database
     def self.all
-      conn = PG.connect(ENV.fetch("DATABASE_URL"))
+      conn = PG.connect(Pgchief::DATABASE_URL)
       result = conn.exec("SELECT datname FROM pg_database WHERE datistemplate = false")
       result
         .map { |row| row["datname"] }

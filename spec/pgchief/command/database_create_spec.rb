@@ -36,6 +36,6 @@ RSpec.describe Pgchief::Command::DatabaseCreate do
   end
 
   def conn
-    @conn ||= PG.connect(ENV.fetch("DATABASE_URL"))
+    @conn ||= PG.connect(Pgchief::DATABASE_URL)
   end
 end

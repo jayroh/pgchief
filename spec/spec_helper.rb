@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "dotenv/load"
+
 # *********************
 # * Do NOT move this! *
 # *********************

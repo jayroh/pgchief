@@ -2,8 +2,9 @@
 pgurl = "postgresql://username:password@host:5432"
 
 # Directory where db backups will be placed
-backup_dir = "~/.pg_backups"
+backup_dir = "~/.pgchief/backups"
 
-# [Optional] location of encrypted username:password pairs
-# (for display of connection strings)
-# credentials_file = "~/.pgchief_credentials"
+# ** OPTIONAL **
+
+# Location of encrypted database connection strings
+# credentials_file = "~/.pgchief/credentials"

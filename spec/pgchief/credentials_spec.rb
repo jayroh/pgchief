@@ -5,12 +5,12 @@ require 'pry'
 
 RSpec.describe Pgchief::Credentials do
   around do |example|
-    Pgchief::Config.credentials_file = File.join(__dir__, '..', 'tmp', 'pgchief_credentials')
+    Pgchief::Config.credentials_file = File.join(__dir__, '..', '..', 'tmp', 'pgchief_credentials')
     FileUtils.touch(Pgchief::Config.credentials_file)
 
     example.run
 
-    FileUtils.rm_f(Pgchief::Config.credentials_file)
+    FileUtils.rm(Pgchief::Config.credentials_file)
   end
 
   context 'when the password is valid' do

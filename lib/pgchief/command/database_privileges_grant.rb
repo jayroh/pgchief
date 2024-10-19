@@ -4,20 +4,18 @@ module Pgchief
   module Command
     # Class to grant database privileges
     class DatabasePrivilegesGrant < Base
+      attr_reader :username
+
       def initialize(*params) # rubocop:disable Lint/MissingSuper
         @params = params
+        @username = params.first
       end
 
       def call
-        username = params.first
         databases = params.last
 
         databases.each do |database|
           grant_privs_to(database)
-        rescue PG::Error => e
-          "Error: #{e.message}"
-        ensure
-          conn.finished? || conn.close
         end
 
         "Privileges granted to #{username} on #{databases.join(", ")}"
@@ -39,6 +37,10 @@ module Pgchief
           SQL
         )
         conn.close
+      rescue PG::Error => e
+        "Error: #{e.message}"
+      ensure
+        conn.finished? || conn.close
       end
     end
   end

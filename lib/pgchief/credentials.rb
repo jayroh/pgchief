@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-require 'openssl'
-require 'base64'
+require "openssl"
+require "base64"
+require "extensions/string"
 
 module Pgchief
+  # Encrypts and decrypts credentials
   class Credentials
     def self.encrypt(plaintext, secret)
       new(plaintext, secret).encrypt
     end
 
-    def self.decrypt(encrypted, secret)
+    def self.decrypt(plaintext, secret)
       new(plaintext, secret).decrypt
     end
 
@@ -34,26 +36,32 @@ module Pgchief
     private
 
     def encrypt_string
-      username = Encrypt.call(plaintext.split(':').first, secret)
-      pair = Encrypt.call(plaintext, secret)
+      username = plaintext.split(":").first.encrypt(secret)
+      pair = plaintext.encrypt(secret)
       @encrypted_credentials = "#{username}:#{pair}"
     end
 
-    def decrypt_user_credentials
-      @decrypted_credentials = Decrypt.call(encrypted_credentials.split(':').last, secret)
-    end
-
-    def add_user_line
-      File.open(Config.credentials_file, 'a') { |file| file.puts(encrypted_credentials) }
-    end
-
-    def find_user_line
-    end
-
     def remove_user_line
+      File.open(Config.credentials_file, "w") do |file|
+        file.puts(
+          File.read(Config.credentials_file).gsub(encrypted_credentials, "")
+        )
+      end
     end
 
     def user_exists?
+      username = plaintext.split(":").first.encrypt(secret)
+      File.read(Config.credentials_file).include?(username)
+    end
+
+    def decrypt_user_credentials
+      @decrypted_credentials = encrypted_credentials.split(":").last.decrypt(secret)
+    end
+
+    def add_user_line
+      File.open(Config.credentials_file, "a") do |file|
+        file.puts(encrypted_credentials)
+      end
     end
   end
 end

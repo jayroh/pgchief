@@ -5,6 +5,7 @@ module Pgchief
     # Kicks off the CLI with an initial prompt
     class Start < Base
       def call
+        Pgchief::Config.load_config!
         result = prompt.select(
           "Welcome! How can I help?",
           [

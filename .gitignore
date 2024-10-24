@@ -6,6 +6,7 @@
 /pkg/
 /spec/reports/
 /spec/examples.txt
+/tmp/
 
 # Used by dotenv library to load environment variables.
 .env

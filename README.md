@@ -21,9 +21,13 @@ below for the feature check-list and current progress.
 
 ***
 
-## Usage:
+## Usage
 
-```
+On startup, `pgchief` will ask for a secret (password) that is used to encrypt
+created usernames and password for database connections. The secret itself is
+not saved to disk.
+
+```sh
 gem install pgchief
 
 # To initialize the config file at `~/.pgchief.toml`:
@@ -36,7 +40,7 @@ export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
 pgchief
 ```
 
-## Config:
+## Config
 
 Format of `~/.pgchief.toml`
 
@@ -45,11 +49,12 @@ Format of `~/.pgchief.toml`
 pgurl = "postgresql://username:password@host:5432"
 
 # Directory where db backups will be placed
-backup_dir = "~/.pg_backups"
+backup_dir = "~/.pgchief/backups"
 
-# [Optional] key for encryption/decryption of credentials displayed
-# in users' connection strings
-# encryption_key = "my-password"
+# ** OPTIONAL **
+
+# Location of encrypted database connection strings
+# credentials_file = "~/.pgchief/credentials"
 ```
 
 Note:
@@ -63,13 +68,15 @@ Note:
 2. `bundle install`
 3. `cp .env.sample .env`
 4. Edit `.env` and change:
-  * `DATABASE_URL` to point to your main pg instance's superuser account with a connection string.
-  * `TEST_DATABASE_URL` to point to your local pg instance where tests can be run against.
+   * `DATABASE_URL` to point to your main pg instance's superuser account with a
+     connection string.
+   * `TEST_DATABASE_URL` to point to your local pg instance where tests can be
+     run against.
 5. `bundle exec rake` to run test suite & rubocop.
 
-## The ideal, aspirational, DX:
+## The ideal, aspirational, DX
 
-```
+```sh
 $ pgchief --init # create the TOML file in your home dir (w/600 permissions)
 $ pgchief
 
@@ -116,13 +123,13 @@ Give "rando-username" access to database(s):
 
 ## Feature Roadmap
 
-- [x] Create database
-- [x] Create user
-- [x] Drop database
-- [x] Drop user
-- [x] List databases
-- [x] Give user permissions to use database
-- [x] Initialize toml file
-- [ ] Display connection information
-- [ ] Back up database
-- [ ] Restore database
+* [x] Create database
+* [x] Create user
+* [x] Drop database
+* [x] Drop user
+* [x] List databases
+* [x] Give user permissions to use database
+* [x] Initialize toml file
+* [ ] Display connection information
+* [ ] Back up database
+* [ ] Restore database

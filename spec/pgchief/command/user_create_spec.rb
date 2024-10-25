@@ -11,18 +11,24 @@ RSpec.describe Pgchief::Command::UserCreate do
 
   describe ".call" do
     it "creates a user" do
+      allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, password)
       result = described_class.call(username, password)
 
       expect(result).to eq("User '#{username}' created successfully!")
       expect(users).to include(username)
+      expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, password)
     end
 
     it "raises error if a user already exists" do
+      allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, password)
+
       described_class.call(username, password)
 
       expect do
         described_class.call(username, password)
       end.to raise_error(Pgchief::Errors::UserExistsError)
+
+      expect(Pgchief::Command::StoreConnectionString).not_to have_received(:call).with(username, password)
     end
   end
 

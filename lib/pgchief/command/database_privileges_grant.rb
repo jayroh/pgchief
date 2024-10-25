@@ -15,6 +15,7 @@ module Pgchief
       def call
         databases.each do |database|
           grant_privs_to(database)
+          store_credentials!(database)
         end
 
         "Privileges granted to #{username} on #{databases.join(", ")}"
@@ -40,6 +41,10 @@ module Pgchief
         "Error: #{e.message}"
       ensure
         conn.finished? || conn.close
+      end
+
+      def store_credentials!(database)
+        Pgchief::Command::StoreConnectionString.call(username, password, database)
       end
     end
   end

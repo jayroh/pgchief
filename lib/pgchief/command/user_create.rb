@@ -19,6 +19,7 @@ module Pgchief
         raise Pgchief::Errors::UserExistsError if user_exists?
 
         create_user!
+        save_credentials!
 
         "User '#{username}' created successfully!"
       rescue PG::Error => e
@@ -36,6 +37,10 @@ module Pgchief
 
       def create_user!
         conn.exec("CREATE USER #{username} WITH #{user_options} PASSWORD '#{password}'")
+      end
+
+      def save_credentials!
+        Pgchief::Command::StoreConnectionString.call(username, password)
       end
 
       def user_options

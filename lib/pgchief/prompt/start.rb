@@ -6,6 +6,8 @@ module Pgchief
     class Start < Base
       def call
         Pgchief::Config.load_config!
+        Pgchief::Config.credentials_secret = prompt.mask("Enter credentials secret:")
+
         result = prompt.select(
           "Welcome! How can I help?",
           [

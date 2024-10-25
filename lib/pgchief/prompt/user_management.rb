@@ -10,7 +10,7 @@ module Pgchief
           "Drop user",
           "User list",
           "Grant database privileges",
-          "View database connection string",
+          "View database connection string"
         ])
 
         scope = result == "User list" ? "command" : "prompt"

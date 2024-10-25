@@ -18,7 +18,7 @@ module Pgchief
         @username, @password = params
         raise Pgchief::Errors::UserExistsError if user_exists?
 
-        conn.exec("CREATE USER #{username} WITH #{user_options} PASSWORD '#{password}'")
+        create_user!
 
         "User '#{username}' created successfully!"
       rescue PG::Error => e
@@ -32,6 +32,10 @@ module Pgchief
       def user_exists?
         query = "SELECT 1 FROM pg_user WHERE usename = '#{username}'"
         conn.exec(query).any?
+      end
+
+      def create_user!
+        conn.exec("CREATE USER #{username} WITH #{user_options} PASSWORD '#{password}'")
       end
 
       def user_options

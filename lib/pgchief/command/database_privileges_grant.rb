@@ -4,16 +4,15 @@ module Pgchief
   module Command
     # Class to grant database privileges
     class DatabasePrivilegesGrant < Base
-      attr_reader :username
+      attr_reader :username, :password, :databases
 
-      def initialize(*params) # rubocop:disable Lint/MissingSuper
-        @params = params
-        @username = params.first
+      def initialize(*params)
+        @username = params[0]
+        @password = params[1]
+        @databases = params[2]
       end
 
       def call
-        databases = params.last
-
         databases.each do |database|
           grant_privs_to(database)
         end

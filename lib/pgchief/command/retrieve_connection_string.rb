@@ -17,6 +17,8 @@ module Pgchief
       end
 
       def call
+        return if secret.nil?
+
         File.foreach(Config.credentials_file) do |line|
           @encrypted_line = line if /#{key}:/.match?(line)
         end

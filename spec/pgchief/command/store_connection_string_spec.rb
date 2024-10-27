@@ -25,7 +25,7 @@ RSpec.describe Pgchief::Command::StoreConnectionString do
     around do |example|
       Pgchief::Config.credentials_file = CredentialsFile::NAME
       example.run
-      File.delete(CredentialsFile::NAME)
+      FileUtils.rm_f(CredentialsFile::NAME)
       Pgchief::Config.credentials_file = nil
     end
 
@@ -47,6 +47,15 @@ RSpec.describe Pgchief::Command::StoreConnectionString do
       result = CredentialsFile.has?("#{encrypted_username_and_database}:#{encrypted_connection_string}")
 
       expect(result).to be_truthy
+    end
+
+    it "returns early if the secret is nil" do
+      allow(File).to receive(:open)
+
+      result = described_class.call("username", "connection_string", nil)
+
+      expect(result).to be_nil
+      expect(File).not_to have_received(:open)
     end
   end
 end

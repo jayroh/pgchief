@@ -19,6 +19,8 @@ module Pgchief
       end
 
       def call
+        return if secret.nil?
+
         File.open(Config.credentials_file, "a") do |file|
           file.puts "#{key}:#{@connection_string.encrypt(@secret)}"
         end

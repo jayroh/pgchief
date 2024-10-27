@@ -7,7 +7,7 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
     around do |example|
       Pgchief::Config.credentials_file = "credentials_file"
       example.run
-      File.delete("credentials_file")
+      FileUtils.rm_f("credentials_file")
       Pgchief::Config.credentials_file = nil
     end
 
@@ -46,6 +46,17 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
         result = described_class.call("username", "password", "database")
 
         expect(result).to eq "No connection string found"
+      end
+    end
+
+    context "when secret is nil" do
+      it "returns nil" do
+        allow(File).to receive(:foreach)
+
+        result = described_class.call("username", nil)
+
+        expect(result).to be_nil
+        expect(File).not_to have_received(:foreach)
       end
     end
   end

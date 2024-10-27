@@ -32,6 +32,6 @@ RSpec.describe Pgchief::Config do
 
     expect(described_class.pgurl).to eq("postgresql://localhost:5432")
     expect(described_class.backup_dir).to eq("/tmp/backups")
-    expect(described_class.credentials_file).to eq("~/creds")
+    expect(described_class.credentials_file).to eq("#{Dir.home}/creds")
   end
 end

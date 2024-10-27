@@ -2,14 +2,30 @@
 
 require "spec_helper"
 
-RSpec.describe Pgchief::Command::StoreConnectionString do
-  CREDENTIALS_FILE = "credentials_file"
+class CredentialsFile
+  NAME = "credentials_file"
 
+  def self.has?(line)
+    new.has?(line)
+  end
+
+  attr_reader :file
+
+  def initialize
+    @file = File.read(CredentialsFile::NAME)
+  end
+
+  def has?(line)
+    file.include? line
+  end
+end
+
+RSpec.describe Pgchief::Command::StoreConnectionString do
   describe "#call" do
     around do |example|
-      Pgchief::Config.credentials_file = CREDENTIALS_FILE
+      Pgchief::Config.credentials_file = CredentialsFile::NAME
       example.run
-      File.delete(CREDENTIALS_FILE)
+      File.delete(CredentialsFile::NAME)
       Pgchief::Config.credentials_file = nil
     end
 
@@ -31,20 +47,6 @@ RSpec.describe Pgchief::Command::StoreConnectionString do
       result = CredentialsFile.has?("#{encrypted_username_and_database}:#{encrypted_connection_string}")
 
       expect(result).to be_truthy
-    end
-  end
-
-  class CredentialsFile
-    def self.has?(line)
-      new.has?(line)
-    end
-
-    def initialize
-      @file = File.read(CREDENTIALS_FILE)
-    end
-
-    def has?(line)
-      @file.include? line
     end
   end
 end

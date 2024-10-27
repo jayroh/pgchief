@@ -22,7 +22,7 @@ RSpec.describe Pgchief::Config do
 
     expect(described_class.pgurl).to eq("postgresql://localhost:5432")
     expect(described_class.backup_dir).to eq("/tmp")
-    expect(described_class.credentials_file).to eq(nil)
+    expect(described_class.credentials_file).to be_nil
   end
 
   it "loads different configuration settings from a TOML file" do

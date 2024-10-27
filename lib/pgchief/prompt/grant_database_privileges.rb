@@ -7,7 +7,8 @@ module Pgchief
       def call
         username  = params[0] || select_user
         password  = params[1] || ask_for_password
-        databases = params[2] || prompt.multi_select("Give \"#{username}\" access to database(s):", Pgchief::Database.all)
+        databases = params[2] || prompt.multi_select("Give \"#{username}\" access to database(s):",
+                                                     Pgchief::Database.all)
 
         result = Pgchief::Command::DatabasePrivilegesGrant.call(username, password, databases)
         prompt.say result

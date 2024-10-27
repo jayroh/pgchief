@@ -19,7 +19,7 @@ RSpec.describe Pgchief::Command::UserCreate do
       expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, password)
     end
 
-    it "raises error if a user already exists" do
+    it "raises error if a user already exists and stores connection string only once" do
       allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, password)
 
       described_class.call(username, password)
@@ -28,7 +28,7 @@ RSpec.describe Pgchief::Command::UserCreate do
         described_class.call(username, password)
       end.to raise_error(Pgchief::Errors::UserExistsError)
 
-      expect(Pgchief::Command::StoreConnectionString).not_to have_received(:call).with(username, password)
+      expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, password).once
     end
   end
 

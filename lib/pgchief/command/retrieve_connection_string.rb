@@ -8,10 +8,10 @@ module Pgchief
     class RetrieveConnectionString < Base
       attr_reader :username, :database, :secret, :encrypted_line
 
-      def initialize(username, secret = Config.credentials_secret, database = nil)
+      def initialize(username, database = nil, secret = Config.credentials_secret)
         @username = username
-        @secret   = secret
         @database = database
+        @secret   = secret
 
         @encrypted_line = nil
       end

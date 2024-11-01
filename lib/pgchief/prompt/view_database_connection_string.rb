@@ -5,10 +5,10 @@ module Pgchief
     # Class to ask for database names, in order to create it
     class ViewDatabaseConnectionString < Base
       def call
-        username  = params.first || select_user
-        databases = prompt.select("Database you're connecting to:", Pgchief::Database.all)
-        secret    = prompt.mask("Enter secret/password:")
-        result    = Pgchief::Command::RetrieveConnectionString.call(username, databases, secret)
+        username = params.first || select_user
+        database = prompt.select("Database you're connecting to:", Pgchief::Database.all)
+        secret   = Pgchief::Config.credentials_secret
+        result   = Pgchief::Command::RetrieveConnectionString.call(username, database, secret)
 
         prompt.say result
       end

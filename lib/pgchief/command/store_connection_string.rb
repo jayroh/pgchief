@@ -3,7 +3,16 @@
 module Pgchief
   module Command
     # Class to store connection string
-    class StoreConnectionString < Base
+    class StoreConnectionString
+      def self.call(
+        username,
+        connection_string,
+        secret = Config.credentials_secret,
+        database = nil
+      )
+        new(username, connection_string, secret, database).call
+      end
+
       attr_reader :username, :secret, :password, :database
 
       def initialize(

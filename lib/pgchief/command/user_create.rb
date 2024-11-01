@@ -40,11 +40,18 @@ module Pgchief
       end
 
       def save_credentials!
-        Pgchief::Command::StoreConnectionString.call(username, password)
+        Pgchief::Command::StoreConnectionString.call(
+          username,
+          connection_string.to_s,
+        )
       end
 
       def user_options
         USER_OPTIONS.join(" ")
+      end
+
+      def connection_string
+        ConnectionString.new(Pgchief::DATABASE_URL, username:, password:)
       end
     end
   end

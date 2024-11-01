@@ -6,6 +6,7 @@ require "tty-option"
 
 require "pgchief/cli"
 require "pgchief/config"
+require "pgchief/connection_string"
 require "pgchief/version"
 require "pgchief/database"
 require "pgchief/user"

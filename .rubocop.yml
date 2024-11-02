@@ -18,6 +18,9 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - '*.gemspec'
 
+Lint/MixedRegexpCaptureTypes:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Max: 5
 
@@ -25,4 +28,7 @@ RSpec/ExampleLength:
   Max: 20
 
 Lint/MissingSuper:
+  Enabled: false
+
+Metrics/ParameterLists:
   Enabled: false

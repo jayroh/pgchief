@@ -20,7 +20,7 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
         "#{encrypted_username_and_db}:#{encrypted_connection_string}"
       )
 
-      result = described_class.call("username", "password", "database")
+      result = described_class.call("username", "database", "password")
 
       expect(result).to eq("connection_string")
     end
@@ -34,7 +34,7 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
         "#{encrypted_username}:#{encrypted_connection_string}"
       )
 
-      result = described_class.call("username", "password")
+      result = described_class.call("username", nil, "password")
 
       expect(result).to eq("connection_string")
     end
@@ -43,7 +43,7 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
       it "returns nil" do
         File.write(Pgchief::Config.credentials_file, "")
 
-        result = described_class.call("username", "password", "database")
+        result = described_class.call("username", "database", "password")
 
         expect(result).to eq "No connection string found"
       end
@@ -53,7 +53,7 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
       it "returns nil" do
         allow(File).to receive(:foreach)
 
-        result = described_class.call("username", nil)
+        result = described_class.call("username", nil, nil)
 
         expect(result).to be_nil
         expect(File).not_to have_received(:foreach)

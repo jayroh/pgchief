@@ -8,19 +8,20 @@ RSpec.describe Pgchief::Command::UserCreate do
 
   let(:username) { "test_user" }
   let(:password) { "test_password" }
+  let(:connection_string) { "postgresql://#{username}:#{password}@localhost:5432/?sslmode=false" }
 
   describe ".call" do
     it "creates a user" do
-      allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, password)
+      allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, connection_string)
       result = described_class.call(username, password)
 
       expect(result).to eq("User '#{username}' created successfully!")
       expect(users).to include(username)
-      expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, password)
+      expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, connection_string)
     end
 
     it "raises error if a user already exists and stores connection string only once" do
-      allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, password)
+      allow(Pgchief::Command::StoreConnectionString).to receive(:call).with(username, connection_string)
 
       described_class.call(username, password)
 
@@ -28,7 +29,7 @@ RSpec.describe Pgchief::Command::UserCreate do
         described_class.call(username, password)
       end.to raise_error(Pgchief::Errors::UserExistsError)
 
-      expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, password).once
+      expect(Pgchief::Command::StoreConnectionString).to have_received(:call).with(username, connection_string).once
     end
   end
 

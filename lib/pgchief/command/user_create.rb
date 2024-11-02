@@ -42,7 +42,7 @@ module Pgchief
       def save_credentials!
         Pgchief::Command::StoreConnectionString.call(
           username,
-          connection_string.to_s,
+          connection_string.to_s
         )
       end
 
@@ -51,7 +51,11 @@ module Pgchief
       end
 
       def connection_string
-        ConnectionString.new(Pgchief::DATABASE_URL, username:, password:)
+        ConnectionString.new(
+          Pgchief::DATABASE_URL,
+          username: username,
+          password: password
+        )
       end
     end
   end

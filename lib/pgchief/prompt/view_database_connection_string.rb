@@ -6,7 +6,8 @@ module Pgchief
     class ViewDatabaseConnectionString < Base
       def call
         username = params.first || select_user
-        database = prompt.select("Database you're connecting to:", Pgchief::Database.all)
+        database = prompt.select("Database you're connecting to:", Pgchief::Database.all + ["None"])
+        database = nil if database == "None"
         secret   = Pgchief::Config.credentials_secret
         result   = Pgchief::Command::RetrieveConnectionString.call(username, database, secret)
 

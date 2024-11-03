@@ -43,8 +43,20 @@ module Pgchief
         conn.finished? || conn.close
       end
 
-      def store_credentials!(database)
-        Pgchief::Command::StoreConnectionString.call(username, password, database)
+      def store_credentials!(database) # rubocop:disable Metrics/MethodLength
+        connection_string = ConnectionString.new(
+          Pgchief::DATABASE_URL,
+          username: username,
+          password: password,
+          database: database
+        ).to_s
+
+        Pgchief::Command::StoreConnectionString.call(
+          username,
+          connection_string,
+          Config.credentials_secret,
+          database
+        )
       end
     end
   end

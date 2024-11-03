@@ -45,17 +45,17 @@ RSpec.describe Pgchief::ConnectionString do
         database: "dbname"
       )
 
-      expect(connection_string.to_s).to eq "postgresql://dbuser:dbpass@dbhost:5432/dbname?sslmode=false"
+      expect(connection_string.to_s).to eq "postgresql://dbuser:dbpass@dbhost:5432/dbname"
     end
   end
 
   describe "#.to_s" do
     it "returns the string based on the properties" do
       expect(described_class.new("postgres://user:pass@localhost:1234/mydb").to_s)
-        .to eq "postgresql://user:pass@localhost:1234/mydb?sslmode=false"
+        .to eq "postgresql://user:pass@localhost:1234/mydb"
 
       expect(described_class.new("postgresql://user@localhost").to_s)
-        .to eq "postgresql://user:@localhost:5432/?sslmode=false"
+        .to eq "postgresql://user:@localhost:5432/"
     end
   end
 end

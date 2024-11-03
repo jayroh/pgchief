@@ -25,7 +25,7 @@ module Pgchief
 
         return "No connection string found" if @encrypted_line.nil?
 
-        @encrypted_line.split(":").last.decrypt(secret)
+        @encrypted_line.split(":").last.strip.decrypt(secret)
       end
 
       private

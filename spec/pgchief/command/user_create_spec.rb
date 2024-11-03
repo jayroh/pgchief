@@ -8,7 +8,7 @@ RSpec.describe Pgchief::Command::UserCreate do
 
   let(:username) { "test_user" }
   let(:password) { "test_password" }
-  let(:connection_string) { "postgresql://#{username}:#{password}@localhost:5432/?sslmode=false" }
+  let(:connection_string) { "postgresql://#{username}:#{password}@localhost:5432/" }
 
   describe ".call" do
     it "creates a user" do

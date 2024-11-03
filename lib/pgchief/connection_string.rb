@@ -21,8 +21,7 @@ module Pgchief
       password: nil,
       host: nil,
       port: nil,
-      database: nil,
-      sslmode: nil
+      database: nil
     )
       @database_url = database_url
       @host = host
@@ -30,11 +29,10 @@ module Pgchief
       @password = password
       @port = port
       @database = database
-      @sslmode = sslmode
     end
 
     def to_s
-      "postgresql://#{username}:#{password}@#{host}:#{port}/#{database}?sslmode=#{sslmode}"
+      "postgresql://#{username}:#{password}@#{host}:#{port}/#{database}"
     end
 
     def host
@@ -55,10 +53,6 @@ module Pgchief
 
     def database
       @database || matched[:database] || ""
-    end
-
-    def sslmode
-      @sslmode || matched[:sslmode] || "false"
     end
 
     private

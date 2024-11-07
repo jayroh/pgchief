@@ -130,6 +130,6 @@ Give "rando-username" access to database(s):
 * [x] List databases
 * [x] Give user permissions to use database
 * [x] Initialize toml file
-* [ ] Display connection information
+* [x] Display connection information
 * [ ] Back up database
 * [ ] Restore database

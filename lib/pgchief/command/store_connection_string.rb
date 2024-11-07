@@ -5,42 +5,31 @@ module Pgchief
     # Class to store connection string
     class StoreConnectionString
       def self.call(
-        username,
+        key,
         connection_string,
-        secret = Config.credentials_secret,
-        database = nil
+        secret = Config.credentials_secret
       )
-        new(username, connection_string, secret, database).call
+        new(key, connection_string, secret).call
       end
 
-      attr_reader :username, :secret, :password, :database
+      attr_reader :key, :connection_string, :secret
 
       def initialize(
-        username,
+        key,
         connection_string,
-        secret = Config.credentials_secret,
-        database = nil
+        secret = Config.credentials_secret
       )
-        @username          = username
-        @secret            = secret
+        @key               = key
         @connection_string = connection_string
-        @database          = database
+        @secret            = secret
       end
 
       def call
         return if secret.nil?
 
         File.open(Config.credentials_file, "a") do |file|
-          file.puts "#{key}:#{@connection_string.encrypt(@secret)}"
+          file.puts "#{key.encrypt(@secret)}:#{@connection_string.encrypt(@secret)}"
         end
-      end
-
-      private
-
-      def key
-        @key = @username.dup
-        @key << ":#{@database}" if @database
-        @key.encrypt(@secret)
       end
     end
   end

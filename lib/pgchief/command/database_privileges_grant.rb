@@ -4,7 +4,7 @@ module Pgchief
   module Command
     # Class to grant database privileges
     class DatabasePrivilegesGrant < Base
-      attr_reader :username, :password, :databases
+      attr_reader :username, :password, :database
 
       def initialize(*params)
         @username = params[0]
@@ -13,18 +13,19 @@ module Pgchief
       end
 
       def call
-        databases.each do |database|
-          grant_privs_to(database)
-          store_credentials!(database)
+        @databases.each do |database|
+          @database = database
+          grant_privs!
+          store_credentials!
         end
 
-        "Privileges granted to #{username} on #{databases.join(", ")}"
+        "Privileges granted to #{username} on #{@databases.join(", ")}"
       end
 
       private
 
-      def grant_privs_to(database) # rubocop:disable Metrics/MethodLength
-        conn = PG.connect("#{DATABASE_URL}/#{database}")
+      def grant_privs! # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+        conn = PG.connect("#{Pgchief::DATABASE_URL}/#{database}")
         conn.exec("GRANT CONNECT ON DATABASE #{database} TO #{username};")
         conn.exec("GRANT CREATE ON SCHEMA public TO #{username};")
         conn.exec("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO #{username};")
@@ -43,20 +44,20 @@ module Pgchief
         conn.finished? || conn.close
       end
 
-      def store_credentials!(database) # rubocop:disable Metrics/MethodLength
-        connection_string = ConnectionString.new(
+      def store_credentials!
+        Pgchief::Command::StoreConnectionString.call(
+          "#{username}:#{database}",
+          connection_string
+        )
+      end
+
+      def connection_string
+        ConnectionString.new(
           Pgchief::DATABASE_URL,
           username: username,
           password: password,
           database: database
         ).to_s
-
-        Pgchief::Command::StoreConnectionString.call(
-          username,
-          connection_string,
-          Config.credentials_secret,
-          database
-        )
       end
     end
   end

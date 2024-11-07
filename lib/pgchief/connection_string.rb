@@ -10,7 +10,6 @@ module Pgchief
       @?(?<host>[^:]*)?
       :?(?<port>\d+)?
       /?(?<database>[^\?]*)?
-      (\?sslmode=(?<sslmode>(true|false)))?
       \z}
 
     attr_reader :database_url

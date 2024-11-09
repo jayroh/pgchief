@@ -6,5 +6,5 @@ backup_dir = "~/.config/pgchief/backups"
 
 # ** OPTIONAL **
 
-# Location of encrypted database connection strings
+# Location of saved database connection strings
 # credentials_file = "~/.config/pgchief/credentials"

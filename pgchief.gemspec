@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Uncomment to register a new dependency of your gem
+  spec.add_dependency "argon2"
   spec.add_dependency "pg"
   spec.add_dependency "toml-rb"
   spec.add_dependency "tty-option"

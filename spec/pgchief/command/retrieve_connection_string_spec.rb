@@ -12,51 +12,30 @@ RSpec.describe Pgchief::Command::RetrieveConnectionString do
     end
 
     it "returns connection string for the user and database" do
-      encrypted_username_and_db = "username:database".encrypt("password")
-      encrypted_connection_string = "connection_string".encrypt("password")
+      connection_string = "postgresql://username:pass@localhost:5432/database"
+      File.write(Pgchief::Config.credentials_file, connection_string)
 
-      File.write(
-        Pgchief::Config.credentials_file,
-        "#{encrypted_username_and_db}:#{encrypted_connection_string}"
-      )
+      result = described_class.call("username", "database")
 
-      result = described_class.call("username", "database", "password")
-
-      expect(result).to eq("connection_string")
+      expect(result).to eq(connection_string)
     end
 
     it "returns connection string for the user" do
-      encrypted_username = "username".encrypt("password")
-      encrypted_connection_string = "connection_string".encrypt("password")
+      connection_string = "postgresql://username:pass@localhost:5432"
+      File.write(Pgchief::Config.credentials_file, connection_string)
 
-      File.write(
-        Pgchief::Config.credentials_file,
-        "#{encrypted_username}:#{encrypted_connection_string}"
-      )
+      result = described_class.call("username")
 
-      result = described_class.call("username", nil, "password")
-
-      expect(result).to eq("connection_string")
+      expect(result).to eq(connection_string)
     end
 
-    context "when encrypted line is nil" do
+    context "when file is empty" do
       it "returns nil" do
         File.write(Pgchief::Config.credentials_file, "")
 
-        result = described_class.call("username", "database", "password")
+        result = described_class.call("username", "database")
 
         expect(result).to eq "No connection string found"
-      end
-    end
-
-    context "when secret is nil" do
-      it "returns nil" do
-        allow(File).to receive(:foreach)
-
-        result = described_class.call("username", nil, nil)
-
-        expect(result).to be_nil
-        expect(File).not_to have_received(:foreach)
       end
     end
   end

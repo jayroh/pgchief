@@ -1,39 +1,33 @@
 # frozen_string_literal: true
 
-require "extensions/string"
-
 module Pgchief
   module Command
     # Class to view database connection string
     class RetrieveConnectionString < Base
-      attr_reader :username, :database, :secret, :encrypted_line
+      attr_reader :username, :database
 
-      def initialize(username, database = nil, secret = Config.credentials_secret)
+      def initialize(username, database = nil)
         @username = username
         @database = database
-        @secret   = secret
-
-        @encrypted_line = nil
+        @connection_string = nil
       end
 
       def call
-        return if secret.nil?
-
         File.foreach(Config.credentials_file) do |line|
-          @encrypted_line = line if /#{key}:/.match?(line)
+          @connection_string = line if regex.match?(line)
         end
 
-        return "No connection string found" if @encrypted_line.nil?
-
-        @encrypted_line.split(":").last.strip.decrypt(secret)
+        @connection_string.nil? ? "No connection string found" : @connection_string
       end
 
       private
 
-      def key
-        @key = username.dup
-        @key << ":#{database}" if database
-        @key = @key.encrypt(secret)
+      def regex
+        if database
+          /#{username}.*#{database}$/
+        else
+          /#{username}.*\d$/
+        end
       end
     end
   end

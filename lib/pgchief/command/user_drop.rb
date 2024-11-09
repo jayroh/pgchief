@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "pry"
+
 module Pgchief
   module Command
     # Class to drop a user
@@ -30,6 +32,8 @@ module Pgchief
       def revoke_all_privileges
         databases_with_access.each do |database|
           conn.exec("REVOKE ALL PRIVILEGES ON DATABASE #{database} FROM #{username};")
+        rescue PG::Error => e
+          next
         end
       end
 

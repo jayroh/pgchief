@@ -23,10 +23,6 @@ below for the feature check-list and current progress.
 
 ## Usage
 
-On startup, `pgchief` will ask for a secret (password) that is used to encrypt
-created usernames and password for database connections. The secret itself is
-not saved to disk.
-
 ```sh
 gem install pgchief
 

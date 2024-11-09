@@ -9,7 +9,6 @@ module Pgchief
       attr_accessor \
         :backup_dir,
         :credentials_file,
-        :credentials_secret,
         :pgurl
 
       def load_config!(toml_file = "#{Dir.home}/.config/pgchief/config.toml")

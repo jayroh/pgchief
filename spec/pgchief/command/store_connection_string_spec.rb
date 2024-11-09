@@ -29,34 +29,13 @@ RSpec.describe Pgchief::Command::StoreConnectionString do
       Pgchief::Config.credentials_file = nil
     end
 
-    it "stores connection string with username as the key" do
-      encrypted_key = "username".encrypt("secret")
-      encrypted_connection_string = "connection_string".encrypt("secret")
+    it "stores connection string" do
+      connection_string = "postgresql://username:pass@localhost:5432"
 
-      described_class.call("username", "connection_string", "secret")
-      result = CredentialsFile.has?("#{encrypted_key}:#{encrypted_connection_string}")
-
-      expect(result).to be_truthy
-    end
-
-    it "stores connection string with the username and database" do
-      encrypted_key = "username:database".encrypt("secret")
-      encrypted_connection_string = "connection_string".encrypt("secret")
-
-      described_class.call("username:database", "connection_string", "secret")
-      result = CredentialsFile.has?("#{encrypted_key}:#{encrypted_connection_string}")
+      described_class.call(connection_string)
+      result = CredentialsFile.has?(connection_string)
 
       expect(result).to be_truthy
-    end
-
-    it "returns early if the secret is nil" do
-      allow(File).to receive(:open)
-      key = "username"
-
-      result = described_class.call(key, "connection_string", nil)
-
-      expect(result).to be_nil
-      expect(File).not_to have_received(:open)
     end
   end
 end

@@ -5,12 +5,10 @@ require "spec_helper"
 RSpec.describe Pgchief::Config do
   it "allows setting and getting of configuration settings" do
     described_class.credentials_file = "credentials_file"
-    described_class.credentials_secret = "secret-password"
     described_class.pgurl = "postgresql://localhost:5432"
     described_class.backup_dir = "/tmp"
 
     expect(described_class.credentials_file).to eq("credentials_file")
-    expect(described_class.credentials_secret).to eq("secret-password")
     expect(described_class.pgurl).to eq("postgresql://localhost:5432")
     expect(described_class.backup_dir).to eq("/tmp")
   end

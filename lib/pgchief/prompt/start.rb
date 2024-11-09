@@ -23,10 +23,6 @@ module Pgchief
       def manage_config!
         Pgchief::Config.load_config!
         Pgchief::Config.set_up_file_structure!
-
-        return unless Pgchief::Config.credentials_file
-
-        Pgchief::Config.credentials_secret = prompt.mask("Enter credentials secret:")
       end
     end
   end

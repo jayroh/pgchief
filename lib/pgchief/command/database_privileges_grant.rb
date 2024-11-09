@@ -45,10 +45,7 @@ module Pgchief
       end
 
       def store_credentials!
-        Pgchief::Command::StoreConnectionString.call(
-          "#{username}:#{database}",
-          connection_string
-        )
+        Pgchief::Command::StoreConnectionString.call(connection_string)
       end
 
       def connection_string

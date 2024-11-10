@@ -18,7 +18,8 @@ module Pgchief
         @username, @password = params
         raise Pgchief::Errors::UserExistsError if user_exists?
 
-        conn.exec("CREATE USER #{username} WITH #{user_options} PASSWORD '#{password}'")
+        create_user!
+        save_credentials!
 
         "User '#{username}' created successfully!"
       rescue PG::Error => e
@@ -34,8 +35,24 @@ module Pgchief
         conn.exec(query).any?
       end
 
+      def create_user!
+        conn.exec("CREATE USER #{username} WITH #{user_options} PASSWORD '#{password}'")
+      end
+
+      def save_credentials!
+        Pgchief::Command::StoreConnectionString.call(connection_string)
+      end
+
       def user_options
         USER_OPTIONS.join(" ")
+      end
+
+      def connection_string
+        ConnectionString.new(
+          Pgchief::DATABASE_URL,
+          username: username,
+          password: password
+        ).to_s
       end
     end
   end

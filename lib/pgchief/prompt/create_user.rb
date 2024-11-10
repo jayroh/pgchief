@@ -13,7 +13,7 @@ module Pgchief
 
         yes_or_no(
           "Give \"#{username}\" access to database(s)?",
-          yes: -> { Pgchief::Prompt::GrantDatabasePrivileges.call(username) }
+          yes: -> { Pgchief::Prompt::GrantDatabasePrivileges.call(username, password) }
         )
       end
     end

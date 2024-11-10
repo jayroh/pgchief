@@ -6,15 +6,14 @@ module Pgchief
   module Command
     # Create a configuration file at $HOME
     class ConfigCreate < Base
-      def call(dir: Dir.home)
-        return if File.exist?("#{dir}/.pgchief.toml")
+      def call(dir: "#{Dir.home}/.config/pgchief")
+        return if File.exist?("#{dir}/config.toml")
 
-        FileUtils.cp(
-          File.join(__dir__, "..", "..", "..", "config", "pgchief.toml"),
-          "#{dir}/.pgchief.toml"
-        )
+        template = File.join(__dir__, "..", "..", "..", "config", "pgchief.toml")
+        FileUtils.mkdir_p(dir)
+        FileUtils.cp(template, "#{dir}/config.toml")
 
-        puts "Configuration file created at #{dir}/.pgchief.toml"
+        puts "Configuration file created at #{dir}/config.toml"
       end
     end
   end

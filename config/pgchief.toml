@@ -1,9 +1,10 @@
 # Connection string to superuser account at your PG instance
-pgurl = "postgresql://username:password@host:5432"
+pgurl = "postgresql://localhost:5432"
 
 # Directory where db backups will be placed
-backup_dir = "~/.pg_backups"
+backup_dir = "~/.config/pgchief/backups"
 
-# [Optional] key for encryption/decryption of credentials displayed
-# in users' connection strings
-# encryption_key = "my-password"
+# ** OPTIONAL **
+
+# Location of saved database connection strings
+# credentials_file = "~/.config/pgchief/credentials"

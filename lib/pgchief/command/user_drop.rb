@@ -30,6 +30,8 @@ module Pgchief
       def revoke_all_privileges
         databases_with_access.each do |database|
           conn.exec("REVOKE ALL PRIVILEGES ON DATABASE #{database} FROM #{username};")
+        rescue PG::Error
+          next
         end
       end
 

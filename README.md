@@ -41,7 +41,7 @@ pgchief
 
 ## Config
 
-Format of `~/.pgchief.toml`
+Format of `~/.config/pgchief/config.toml`
 
 ```toml
 # Connection string to superuser account at your PG instance

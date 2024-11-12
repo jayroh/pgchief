@@ -8,8 +8,9 @@ module Pgchief
     class << self
       attr_accessor \
         :backup_dir,
-        :credentials_file,
-        :pgurl
+        :credentials_file
+
+      attr_writer :pgurl
 
       def load_config!(toml_file = "#{Dir.home}/.config/pgchief/config.toml")
         config = TomlRB.load_file(toml_file, symbolize_keys: true)
@@ -17,6 +18,10 @@ module Pgchief
         @backup_dir = config[:backup_dir].gsub("~", Dir.home)
         @credentials_file = config[:credentials_file]&.gsub("~", Dir.home)
         @pgurl = config[:pgurl]
+      end
+
+      def pgurl
+        ENV.fetch("DATABASE_URL", @pgurl)
       end
 
       def set_up_file_structure!

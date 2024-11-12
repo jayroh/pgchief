@@ -12,7 +12,7 @@ module Pgchief
 
       def initialize(*params)
         @params = params
-        @conn = PG.connect(Pgchief::DATABASE_URL)
+        @conn = PG.connect(Pgchief::Config.pgurl)
       end
 
       def call

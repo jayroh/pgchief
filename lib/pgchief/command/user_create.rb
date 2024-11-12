@@ -49,7 +49,7 @@ module Pgchief
 
       def connection_string
         ConnectionString.new(
-          Pgchief::DATABASE_URL,
+          Pgchief::Config.pgurl,
           username: username,
           password: password
         ).to_s

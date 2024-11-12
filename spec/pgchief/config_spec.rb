@@ -3,6 +3,15 @@
 require "spec_helper"
 
 RSpec.describe Pgchief::Config do
+  around do |example|
+    original_env        = ENV.fetch("DATABASE_URL", nil)
+    ENV["DATABASE_URL"] = nil
+
+    example.run
+
+    ENV["DATABASE_URL"] = original_env
+  end
+
   it "allows setting and getting of configuration settings" do
     described_class.credentials_file = "credentials_file"
     described_class.pgurl = "postgresql://localhost:5432"

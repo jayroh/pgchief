@@ -36,8 +36,6 @@ require "pgchief/command/user_drop"
 require "pgchief/command/user_list"
 
 module Pgchief
-  DATABASE_URL = ENV.fetch("DATABASE_URL")
-
   class Error < StandardError; end
 
   module Errors

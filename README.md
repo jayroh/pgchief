@@ -26,12 +26,15 @@ below for the feature check-list and current progress.
 ```sh
 gem install pgchief
 
-# To initialize the config file at `~/.pgchief.toml`:
+# To initialize the config file at `~/.config/pgchief/config.toml`:
 
 pgchief --init
 
-# make sure the DATABASE_URL is set to the connection string for a pg server's superuser
-export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
+# edit the config file and set your main administrative connection string
+# (vim|nano|pico|ed) ~/.config/pgchief/config.toml
+
+# OR ... make sure the DATABASE_URL env is set to the connection string
+# export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
 
 pgchief
 ```

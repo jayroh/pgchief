@@ -13,6 +13,19 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Fixes
 
+## [0.3.1]
+
+### Changes
+
+- The main database url will be accessed via the config class and will prioritize
+  the ENV over the config file, if it is set.
+
+### Fixes
+
+- Do not use the ENV only. Until now that was the only method and it was ignoring
+  what was set in the config file. This fixes the issue where nothing will work
+  if `ENV["DATABASE_URL"]` is not set.
+
 ## [0.3.0]
 
 ### Additions

@@ -8,3 +8,9 @@ backup_dir = "~/.config/pgchief/backups"
 
 # Location of saved database connection strings
 # credentials_file = "~/.config/pgchief/credentials"
+
+# S3 config - if present, will back up to S3 instead of local filesystem
+# s3_key = ""
+# s3_secret = ""
+# s3_region = "us-east-1"
+# s3_path_prefix = "s3://bucket-name/database-backups/"

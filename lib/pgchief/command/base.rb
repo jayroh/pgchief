@@ -13,6 +13,8 @@ module Pgchief
       def initialize(*params)
         @params = params
         @conn = PG.connect(Pgchief::Config.pgurl)
+      rescue PG::ConnectionBad => e
+        puts "Cannot connect to database. #{e.message}"
       end
 
       def call

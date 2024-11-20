@@ -13,6 +13,10 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Fixes
 
+* Capture error where the config file does not exist and provide some guidance.
+* Make a `PG::ConnectionBad` error a little less scary(?)
+* Do not inherit the base `Command` class in `ConfigCreate`. It doesn't need to connect to the DB.
+
 ## [0.3.1]
 
 ### Changes

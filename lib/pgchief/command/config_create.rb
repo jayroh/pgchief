@@ -5,7 +5,11 @@ require "fileutils"
 module Pgchief
   module Command
     # Create a configuration file at $HOME
-    class ConfigCreate < Base
+    class ConfigCreate
+      def self.call(dir: "#{Dir.home}/.config/pgchief")
+        new.call(dir: dir)
+      end
+
       def call(dir: "#{Dir.home}/.config/pgchief")
         return if File.exist?("#{dir}/config.toml")
 

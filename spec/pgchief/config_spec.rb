@@ -12,6 +12,16 @@ RSpec.describe Pgchief::Config do
     ENV["DATABASE_URL"] = original_env
   end
 
+  it "prints out an error if the config file does not exist" do
+    toml_file = "non_existent_file.toml"
+    expected_first = "You must create a config file at #{toml_file}."
+    expected_second = "run `pgchief --init` to create it."
+    expected_regex = /#{expected_first}.*#{expected_second}/m
+
+    expect { described_class.load_config!(toml_file) }
+      .to output(expected_regex).to_stdout
+  end
+
   it "allows setting and getting of configuration settings" do
     described_class.credentials_file = "credentials_file"
     described_class.pgurl = "postgresql://localhost:5432"

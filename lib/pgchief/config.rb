@@ -18,6 +18,9 @@ module Pgchief
         @backup_dir = config[:backup_dir].gsub("~", Dir.home)
         @credentials_file = config[:credentials_file]&.gsub("~", Dir.home)
         @pgurl = config[:pgurl]
+      rescue Errno::ENOENT
+        puts "You must create a config file at #{toml_file}."
+        puts "run `pgchief --init` to create it."
       end
 
       def pgurl

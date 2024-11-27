@@ -13,6 +13,18 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Fixes
 
+## [0.4.0]
+
+### Changes
+
+* Clean up the config object
+
+### Additions
+
+* Back up option for databases: save to local filesystem or S3.
+
+### Fixes
+
 * Capture error where the config file does not exist and provide some guidance.
 * Make a `PG::ConnectionBad` error a little less scary(?)
 * Do not inherit the base `Command` class in `ConfigCreate`. It doesn't need to connect to the DB.
@@ -79,7 +91,9 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 - Drop user ✅
 - List databases ✅
 
-[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/jayroh/pgchief/releases/tag/v0.4.0
+[0.3.1]: https://github.com/jayroh/pgchief/releases/tag/v0.3.1
 [0.3.0]: https://github.com/jayroh/pgchief/releases/tag/v0.3.0
 [0.2.0]: https://github.com/jayroh/pgchief/releases/tag/v0.2.0
 [0.1.0]: https://github.com/jayroh/pgchief/releases/tag/v0.1.0

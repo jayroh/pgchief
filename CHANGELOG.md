@@ -10,6 +10,7 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 ### Additions
 
 * Restore database from local db-dumps
+* Restore database from s3
 
 ### Changes
 

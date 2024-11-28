@@ -15,12 +15,8 @@ module Pgchief
       conn.close
     end
 
-    def self.backups_for(database)
-      Dir["#{Pgchief::Config.backup_dir}#{database}-*.dump"]
-        .sort_by { |f| File.mtime(f) }
-        .reverse
-        .last(3)
-        .map { |f| File.basename(f) }
+    def self.backups_for(database, remote: false)
+      Pgchief::Database::Backups.for(database, remote: remote)
     end
   end
 end

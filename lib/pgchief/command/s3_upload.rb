@@ -19,7 +19,6 @@ module Pgchief
           acl: "private",
           content_type: "application/octet-stream"
         )
-        FileUtils.rm(local_location)
       end
 
       def s3_location

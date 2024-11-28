@@ -11,6 +11,7 @@ require "pgchief/config/s3"
 require "pgchief/connection_string"
 require "pgchief/version"
 require "pgchief/database"
+require "pgchief/database/backups"
 require "pgchief/user"
 
 require "pgchief/prompt/base"

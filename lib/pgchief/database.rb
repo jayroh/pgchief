@@ -14,5 +14,13 @@ module Pgchief
     ensure
       conn.close
     end
+
+    def self.backups_for(database)
+      Dir["#{Pgchief::Config.backup_dir}#{database}-*.dump"]
+        .sort_by { |f| File.mtime(f) }
+        .reverse
+        .last(3)
+        .map { |f| File.basename(f) }
+    end
   end
 end

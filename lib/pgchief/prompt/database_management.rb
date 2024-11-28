@@ -10,7 +10,8 @@ module Pgchief
                                  "Create database",
                                  "Drop database",
                                  "Database List",
-                                 "Backup database"
+                                 "Backup database",
+                                 "Restore database"
                                ])
         scope = result == "Database List" ? "command" : "prompt"
 

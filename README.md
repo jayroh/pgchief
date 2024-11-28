@@ -132,7 +132,7 @@ Give "rando-username" access to database(s):
 * [x] Display connection information
 * [x] Back up database locally
 * [x] Back up database to S3
-* [ ] Restore local database
+* [x] Restore local database
 * [ ] Restore remote database @ S3
 * [ ] Quickly back up via command line option
 * [ ] Quickly restore via command line option

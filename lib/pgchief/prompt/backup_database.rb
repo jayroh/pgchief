@@ -2,7 +2,7 @@
 
 module Pgchief
   module Prompt
-    # Class to prompt for which database to drop
+    # Class to prompt for which database to backup
     class BackupDatabase < Base
       def call
         database = prompt.select("Which database needs backing up?", Pgchief::Database.all)

@@ -9,6 +9,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+* Restore database from local db-dumps
+
 ### Changes
 
 ### Fixes

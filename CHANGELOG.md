@@ -13,6 +13,16 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Fixes
 
+## [0.5.1]
+
+### Changes
+
+* Update README to note that libpq-dev is a required dependency in order to build
+
+### Fixes
+
+* Remove `pry` from being required.
+
 ## [0.5.0]
 
 ### Additions
@@ -98,7 +108,9 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 - Drop user ✅
 - List databases ✅
 
-[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/jayroh/pgchief/releases/tag/v0.5.1
+[0.5.0]: https://github.com/jayroh/pgchief/releases/tag/v0.5.0
 [0.4.0]: https://github.com/jayroh/pgchief/releases/tag/v0.4.0
 [0.3.1]: https://github.com/jayroh/pgchief/releases/tag/v0.3.1
 [0.3.0]: https://github.com/jayroh/pgchief/releases/tag/v0.3.0

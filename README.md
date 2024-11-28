@@ -24,6 +24,7 @@ below for the feature check-list and current progress.
 ## Usage
 
 ```sh
+# System dependency `libpq-dev` must be installed
 gem install pgchief
 
 # To initialize the config file at `~/.config/pgchief/config.toml`:

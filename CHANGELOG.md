@@ -9,12 +9,16 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
-* Restore database from local db-dumps
-* Restore database from s3
-
 ### Changes
 
 ### Fixes
+
+## [0.5.0]
+
+### Additions
+
+* Restore database from local file(s)
+* Restore database from s3
 
 ## [0.4.0]
 

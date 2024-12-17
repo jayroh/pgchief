@@ -11,15 +11,17 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Changes
 
-* Change s3 config option `s3_path_prefix` to `s3_objects_path`
+* Change S3 config option `s3_path_prefix` to `s3_objects_path`.
 
 ### Fixes
+
+* Fix S3 regex to allow `-` in the path.
 
 ## [0.5.1]
 
 ### Changes
 
-* Update README to note that libpq-dev is a required dependency in order to build
+* Update README to note that libpq-dev is a required dependency in order to build.
 
 ### Fixes
 
@@ -29,14 +31,14 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
-* Restore database from local file(s)
-* Restore database from s3
+* Restore database from local file(s).
+* Restore database from s3.
 
 ## [0.4.0]
 
 ### Changes
 
-* Clean up the config object
+* Clean up the config object.
 
 ### Additions
 
@@ -45,7 +47,7 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 ### Fixes
 
 * Capture error where the config file does not exist and provide some guidance.
-* Make a `PG::ConnectionBad` error a little less scary(?)
+* Make a `PG::ConnectionBad` error a little less scary(?).
 * Do not inherit the base `Command` class in `ConfigCreate`. It doesn't need to connect to the DB.
 
 ## [0.3.1]
@@ -65,24 +67,24 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
-- Refactor `exe/pgchief` to utilize `TTY::Option` for kicking off config initialization
-- `pgchief --init` now creates a toml config file in your `$HOME`
+- Refactor `exe/pgchief` to utilize `TTY::Option` for kicking off config initialization.
+- `pgchief --init` now creates a toml config file in your `$HOME`.
 - Added ability to store credentials if your config sets `credentials_file`
-  when db's and users are created
+  when db's and users are created.
 - Added `ConnectionString` class that abstracts the base db connection,
-  allowing for additions of users and db's
-- Load everything in the config file to the Config attributes
+  allowing for additions of users and db's.
+- Load everything in the config file to the Config attributes.
 
 ### Changes
 
-- Default location of config changed from `~/.pgchief.toml` to `~/.config/pgchief/config.toml`
-- Automatically require 'pry' in the test suite
+- Default location of config changed from `~/.pgchief.toml` to `~/.config/pgchief/config.toml`.
+- Automatically require 'pry' in the test suite.
 
 ### Fixes
 
 - When dropping user, ignore whenever a database has no privileges for the
-  selected user
-- Retroactive addition of tests to cover any regressions
+  selected user.
+- Retroactive addition of tests to cover any regressions.
 
 ## [0.2.0] - 2024-08-30
 

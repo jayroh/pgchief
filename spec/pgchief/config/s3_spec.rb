@@ -14,4 +14,12 @@ RSpec.describe Pgchief::Config::S3 do
     expect(s3_config.bucket).to eq("bucket")
     expect(s3_config.path).to eq("path/")
   end
+
+  it "extracts a path with depth > 1" do
+    Pgchief::Config.s3_objects_path = "s3://bucket/path/with-dashes/"
+
+    s3_config = described_class.new(Pgchief::Config)
+
+    expect(s3_config.path).to eq("path/with-dashes/")
+  end
 end

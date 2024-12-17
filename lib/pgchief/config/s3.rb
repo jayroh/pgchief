@@ -15,7 +15,7 @@ module Pgchief
         :s3_region,
         :s3_objects_path
 
-      PREFIX_REGEX = %r{\As3://(?<bucket>(\w|-)*)/(?<path>(\w|/)*/)\z}
+      PREFIX_REGEX = %r{\As3://(?<bucket>(\w|-)*)/(?<path>(\w|/|-)*/)\z}
 
       attr_reader :config
 

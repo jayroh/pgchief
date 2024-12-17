@@ -50,5 +50,6 @@ module Pgchief
     class UserExistsError < Error; end
     class DatabaseExistsError < Error; end
     class DatabaseMissingError < Error; end
+    class BackupError < Error; end
   end
 end

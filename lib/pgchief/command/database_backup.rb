@@ -4,7 +4,7 @@ require "forwardable"
 
 module Pgchief
   module Command
-    # Command object to drop a database
+    # Command object to back up a database
     class DatabaseBackup < Base
       extend Forwardable
 
@@ -12,12 +12,17 @@ module Pgchief
 
       attr_reader :database
 
-      def call
+      def initialize(*params)
+        super
         @database = params.first
         @uploader = Pgchief::Command::S3Upload.new(local_location)
+      end
+
+      def call
         raise Pgchief::Errors::DatabaseMissingError unless db_exists?
 
         backup!
+        check_backup!
         upload! if configured?
 
         "Database '#{database}' backed up to #{location}"
@@ -30,7 +35,11 @@ module Pgchief
       private
 
       def backup!
-        `pg_dump -Fc #{database} -f #{local_location}`
+        `pg_dump -Fc #{Pgchief::Config.pgurl}/#{database} -f #{local_location}`
+      end
+
+      def check_backup!
+        raise Pgchief::Errors::BackupError, "Backup file has 0 bytes" unless File.size?(local_location)
       end
 
       def db_exists?

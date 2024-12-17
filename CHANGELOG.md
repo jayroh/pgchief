@@ -9,9 +9,16 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+* Add spec for database backup command class.
+* Add check on the resulting db dump file. Make sure it's > 0 bytes.
+
 ### Changes
 
 ### Fixes
+
+* Fix typo in backup command class description.
+* Fix backup command to use full database connection string to the database when
+  executing the pg_dump command.
 
 ## [0.5.2]
 

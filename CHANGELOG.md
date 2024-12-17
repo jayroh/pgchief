@@ -11,6 +11,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Changes
 
+* Change s3 config option `s3_path_prefix` to `s3_objects_path`
+
 ### Fixes
 
 ## [0.5.1]

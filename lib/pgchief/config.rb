@@ -26,7 +26,7 @@ module Pgchief
         self.s3_key           = config[:s3_key]
         self.s3_secret        = config[:s3_secret]
         self.s3_region        = config[:s3_region]
-        self.s3_objects_path  = config[:s3_objects_path]
+        self.s3_objects_path  = config[:s3_objects_path] || config[:s3_path_prefix]
       rescue Errno::ENOENT
         puts config_missing_error(toml_file)
       end

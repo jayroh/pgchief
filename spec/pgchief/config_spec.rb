@@ -79,16 +79,16 @@ RSpec.describe Pgchief::Config do
       expect(described_class.s3_key).to eq("KEY")
       expect(described_class.s3_secret).to eq("SECRET")
       expect(described_class.s3_region).to eq("us-east-1")
-      expect(described_class.s3_path_prefix).to eq("s3://bucket/path/")
+      expect(described_class.s3_objects_path).to eq("s3://bucket/path/")
     end
 
     it "ensures the path prefix ends with a slash" do
       toml_file = File.expand_path("spec/fixtures/config_with_s3.toml")
 
       described_class.load_config!(toml_file)
-      described_class.s3_path_prefix = "s3://custom/path"
+      described_class.s3_objects_path = "s3://custom/path"
 
-      expect(described_class.s3_path_prefix).to eq("s3://custom/path/")
+      expect(described_class.s3_objects_path).to eq("s3://custom/path/")
     end
   end
 end

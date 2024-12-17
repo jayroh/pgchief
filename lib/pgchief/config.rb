@@ -14,7 +14,7 @@ module Pgchief
       attr_writer :pgurl
 
       attr_reader \
-        :s3_path_prefix,
+        :s3_objects_path,
         :backup_dir,
         :credentials_file
 
@@ -26,7 +26,7 @@ module Pgchief
         self.s3_key           = config[:s3_key]
         self.s3_secret        = config[:s3_secret]
         self.s3_region        = config[:s3_region]
-        self.s3_path_prefix   = config[:s3_path_prefix]
+        self.s3_objects_path  = config[:s3_objects_path] || config[:s3_path_prefix]
       rescue Errno::ENOENT
         puts config_missing_error(toml_file)
       end
@@ -43,8 +43,8 @@ module Pgchief
         @backup_dir = value ? "#{value.chomp("/")}/".gsub("~", Dir.home) : "/tmp/"
       end
 
-      def s3_path_prefix=(value)
-        @s3_path_prefix = value ? "#{value.chomp("/")}/" : nil
+      def s3_objects_path=(value)
+        @s3_objects_path = value ? "#{value.chomp("/")}/" : nil
       end
 
       def credentials_file=(value)

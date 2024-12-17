@@ -13,9 +13,9 @@ module Pgchief
         :s3_key,
         :s3_secret,
         :s3_region,
-        :s3_path_prefix
+        :s3_objects_path
 
-      PREFIX_REGEX = %r{\As3://(?<bucket>(\w|-)*)/(?<path>(\w|/)*/)\z}
+      PREFIX_REGEX = %r{\As3://(?<bucket>(\w|-)*)/(?<path>(\w|/|-)*/)\z}
 
       attr_reader :config
 
@@ -44,14 +44,14 @@ module Pgchief
           s3_key,
           s3_secret,
           s3_region,
-          s3_path_prefix
+          s3_objects_path
         ].none?(&:nil?)
       end
 
       private
 
       def s3_match
-        @s3_match ||= s3_path_prefix.match(PREFIX_REGEX)
+        @s3_match ||= s3_objects_path.match(PREFIX_REGEX)
       end
     end
   end

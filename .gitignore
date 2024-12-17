@@ -30,3 +30,5 @@
 Gemfile.lock
 .tool-versions
 .rspec_status
+tags
+tags.*

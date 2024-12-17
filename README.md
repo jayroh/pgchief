@@ -137,3 +137,5 @@ Give "rando-username" access to database(s):
 * [x] Restore remote database @ S3
 * [ ] Quickly back up via command line option
 * [ ] Quickly restore via command line option
+* [ ] Task for inclusion in a Rakefile
+* [ ] Support environment variables in config

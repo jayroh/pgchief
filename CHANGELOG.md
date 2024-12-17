@@ -11,6 +11,12 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Changes
 
+### Fixes
+
+## [0.5.2]
+
+### Changes
+
 * Change S3 config option `s3_path_prefix` to `s3_objects_path`.
 * Above change retains backwards compatibility with the old `s3_path_prefix` option.
 
@@ -113,7 +119,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 - Drop user ✅
 - List databases ✅
 
-[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/jayroh/pgchief/releases/tag/v0.5.2
 [0.5.1]: https://github.com/jayroh/pgchief/releases/tag/v0.5.1
 [0.5.0]: https://github.com/jayroh/pgchief/releases/tag/v0.5.0
 [0.4.0]: https://github.com/jayroh/pgchief/releases/tag/v0.4.0

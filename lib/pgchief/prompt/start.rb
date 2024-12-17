@@ -5,13 +5,15 @@ module Pgchief
     # Kicks off the CLI with an initial prompt
     class Start < Base
       def call
+        prompt_message = params.first || "Welcome! How can I help?"
         manage_config!
 
         result = prompt.select(
-          "Welcome! How can I help?",
+          prompt_message,
           [
             "Database management",
-            "User management"
+            "User management",
+            "Quit"
           ]
         )
 

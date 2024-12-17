@@ -10,6 +10,8 @@ module Pgchief
         result     = Pgchief::Command::DatabaseRestore.call(database, local_file)
 
         prompt.say result
+
+        return_to_main_menu
       end
     end
   end

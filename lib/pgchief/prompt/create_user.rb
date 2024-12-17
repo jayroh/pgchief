@@ -15,6 +15,8 @@ module Pgchief
           "Give \"#{username}\" access to database(s)?",
           yes: -> { Pgchief::Prompt::GrantDatabasePrivileges.call(username, password) }
         )
+
+        return_to_main_menu
       end
     end
   end

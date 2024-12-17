@@ -26,6 +26,7 @@ require "pgchief/prompt/restore_database"
 require "pgchief/prompt/start"
 require "pgchief/prompt/user_management"
 require "pgchief/prompt/view_database_connection_string"
+require "pgchief/prompt/quit"
 
 require "pgchief/command"
 require "pgchief/command/base"

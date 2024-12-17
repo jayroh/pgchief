@@ -43,6 +43,10 @@ module Pgchief
           end
         end
       end
+
+      def return_to_main_menu
+        Pgchief::Prompt::Start.call("What's next?")
+      end
     end
   end
 end

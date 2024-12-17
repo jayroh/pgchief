@@ -11,6 +11,8 @@ module Pgchief
         result   = Pgchief::Command::RetrieveConnectionString.call(username, database)
 
         prompt.say result
+
+        return_to_main_menu
       end
 
       def select_user

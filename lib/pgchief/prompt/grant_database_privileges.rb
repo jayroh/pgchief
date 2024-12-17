@@ -12,6 +12,8 @@ module Pgchief
 
         result = Pgchief::Command::DatabasePrivilegesGrant.call(username, password, databases)
         prompt.say result
+
+        return_to_main_menu
       end
 
       def select_user

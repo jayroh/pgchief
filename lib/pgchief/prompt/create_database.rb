@@ -9,6 +9,8 @@ module Pgchief
         result   = Pgchief::Command::DatabaseCreate.call(database)
 
         prompt.say result
+
+        return_to_main_menu
       end
     end
   end

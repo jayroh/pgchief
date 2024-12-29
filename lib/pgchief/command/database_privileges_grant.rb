@@ -27,6 +27,9 @@ module Pgchief
       def grant_privs! # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         conn = PG.connect("#{Pgchief::Config.pgurl}/#{database}")
         conn.exec("GRANT CONNECT ON DATABASE #{database} TO #{username};")
+        conn.exec("GRANT CREATE ON DATABASE #{database} TO #{username};")
+        conn.exec("GRANT USAGE ON SCHEMA pg_catalog TO #{username};")
+        conn.exec("GRANT CREATE ON SCHEMA pg_catalog TO #{username};")
         conn.exec("GRANT CREATE ON SCHEMA public TO #{username};")
         conn.exec("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO #{username};")
         conn.exec("GRANT USAGE ON SCHEMA public TO #{username};")

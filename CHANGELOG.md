@@ -14,11 +14,14 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Changes
 
+* Allow created users the proper permissions to add PG extensions to a database.
+
 ### Fixes
 
 * Fix typo in backup command class description.
 * Fix backup command to use full database connection string to the database when
   executing the pg_dump command.
+* Reset s3 config in db backup spec to prevent config leaks from other test runs.
 
 ## [0.5.2]
 

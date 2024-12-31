@@ -9,6 +9,14 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+### Changes
+
+### Fixes
+
+## [0.5.3]
+
+### Additions
+
 * Add spec for database backup command class.
 * Add check on the resulting db dump file. Make sure it's > 0 bytes.
 
@@ -129,7 +137,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 - Drop user ✅
 - List databases ✅
 
-[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/jayroh/pgchief/compare/v0.5.3...HEAD
+[0.5.3]: https://github.com/jayroh/pgchief/releases/tag/v0.5.3
 [0.5.2]: https://github.com/jayroh/pgchief/releases/tag/v0.5.2
 [0.5.1]: https://github.com/jayroh/pgchief/releases/tag/v0.5.1
 [0.5.0]: https://github.com/jayroh/pgchief/releases/tag/v0.5.0

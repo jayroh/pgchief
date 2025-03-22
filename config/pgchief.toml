@@ -14,3 +14,7 @@ backup_dir = "~/.config/pgchief/backups"
 # s3_secret = ""
 # s3_region = "us-east-1"
 # s3_objects_path = "s3://bucket-name/database-backups/"
+
+# Backup and restore from remote locations?
+# remote_restore = false # default: false
+# remote_backup = false  # default: false

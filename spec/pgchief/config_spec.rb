@@ -18,7 +18,7 @@ RSpec.describe Pgchief::Config do
     expected_second = "run `pgchief --init` to create it."
     expected_regex = /#{expected_first}.*#{expected_second}/m
 
-    expect { described_class.load_config!(toml_file) }
+    expect { described_class.load_config!({}, toml_file) }
       .to output(expected_regex).to_stdout
   end
 
@@ -35,17 +35,18 @@ RSpec.describe Pgchief::Config do
   it "loads default configuration settings from a TOML file" do
     toml_file = File.expand_path("spec/fixtures/config_default.toml")
 
-    described_class.load_config!(toml_file)
+    described_class.load_config!({}, toml_file)
 
     expect(described_class.pgurl).to eq("postgresql://localhost:5432")
     expect(described_class.backup_dir).to eq("/tmp/")
     expect(described_class.credentials_file).to be_nil
+    expect(described_class.remote_restore).to be_falsey
   end
 
   it "loads different configuration settings from a TOML file" do
     toml_file = File.expand_path("spec/fixtures/config_with_credentials_file.toml")
 
-    described_class.load_config!(toml_file)
+    described_class.load_config!({}, toml_file)
 
     expect(described_class.pgurl).to eq("postgresql://localhost:5432")
     expect(described_class.backup_dir).to eq("/tmp/backups/")
@@ -55,7 +56,7 @@ RSpec.describe Pgchief::Config do
   it "uses /tmp as the backup location if it's not set in the config" do
     toml_file = File.expand_path("spec/fixtures/config_default.toml")
 
-    described_class.load_config!(toml_file)
+    described_class.load_config!({}, toml_file)
     described_class.backup_dir = nil
 
     expect(described_class.backup_dir).to eq("/tmp/")
@@ -64,7 +65,7 @@ RSpec.describe Pgchief::Config do
   it "adds a trailing slash to the local backup path" do
     toml_file = File.expand_path("spec/fixtures/config_default.toml")
 
-    described_class.load_config!(toml_file)
+    described_class.load_config!({}, toml_file)
     described_class.backup_dir = "/tmp"
 
     expect(described_class.backup_dir).to eq("/tmp/")
@@ -74,18 +75,19 @@ RSpec.describe Pgchief::Config do
     it "loads the s3 settings" do
       toml_file = File.expand_path("spec/fixtures/config_with_s3.toml")
 
-      described_class.load_config!(toml_file)
+      described_class.load_config!({}, toml_file)
 
       expect(described_class.s3_key).to eq("KEY")
       expect(described_class.s3_secret).to eq("SECRET")
       expect(described_class.s3_region).to eq("us-east-1")
       expect(described_class.s3_objects_path).to eq("s3://bucket/path/")
+      expect(described_class.remote_restore).to be_truthy
     end
 
     it "ensures the path prefix ends with a slash" do
       toml_file = File.expand_path("spec/fixtures/config_with_s3.toml")
 
-      described_class.load_config!(toml_file)
+      described_class.load_config!({}, toml_file)
       described_class.s3_objects_path = "s3://custom/path"
 
       expect(described_class.s3_objects_path).to eq("s3://custom/path/")

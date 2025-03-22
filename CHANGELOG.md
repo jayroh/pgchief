@@ -9,9 +9,13 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+* Improve CLI usability with --version and --help flags.
+* Adds --remote-backup and --remote-restore CLI options.
+* Modifies DatabaseRestore and prompt flows to conditionally operate on remote backups.
+
 ### Changes
 
-### Fixes
+* Updates the config loader to respect CLI flags and TOML values for remote_backup and remote_restore.
 
 ## [0.5.3]
 

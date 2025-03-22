@@ -9,7 +9,9 @@ module Pgchief
       attr_accessor \
         :s3_key,
         :s3_secret,
-        :s3_region
+        :s3_region,
+        :remote_restore,
+        :remote_backup
 
       attr_writer :pgurl
 
@@ -18,7 +20,7 @@ module Pgchief
         :backup_dir,
         :credentials_file
 
-      def load_config!(toml_file = "#{Dir.home}/.config/pgchief/config.toml") # rubocop:disable Metrics/AbcSize
+      def load_config!(params, toml_file = "#{Dir.home}/.config/pgchief/config.toml") # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         config                = TomlRB.load_file(toml_file, symbolize_keys: true)
         self.backup_dir       = config[:backup_dir]
         self.credentials_file = config[:credentials_file]
@@ -27,6 +29,12 @@ module Pgchief
         self.s3_secret        = config[:s3_secret]
         self.s3_region        = config[:s3_region]
         self.s3_objects_path  = config[:s3_objects_path] || config[:s3_path_prefix]
+        self.remote_restore   = params[:"remote-restore"] == true ||
+                                params[:"local-restore"] == false ||
+                                config[:remote_restore]
+        self.remote_backup    = params[:"remote-backup"]  == true ||
+                                params[:"local-backup"] == false ||
+                                config[:remote_backup]
       rescue Errno::ENOENT
         puts config_missing_error(toml_file)
       end

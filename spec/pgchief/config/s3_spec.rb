@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Pgchief::Config::S3 do
   before do
     toml_file = File.expand_path("spec/fixtures/config_with_s3.toml")
-    Pgchief::Config.load_config!(toml_file)
+    Pgchief::Config.load_config!({}, toml_file)
   end
 
   it "parses the s3 string" do
@@ -25,7 +25,7 @@ RSpec.describe Pgchief::Config::S3 do
 
   it "is backwards compatible with s3_path_prefix" do
     toml_file = File.expand_path("spec/fixtures/config_with_old_path_config.toml")
-    Pgchief::Config.load_config!(toml_file)
+    Pgchief::Config.load_config!({}, toml_file)
 
     s3_config = described_class.new(Pgchief::Config)
 

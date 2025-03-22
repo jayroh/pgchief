@@ -5,3 +5,5 @@ s3_key = "KEY"
 s3_secret = "SECRET"
 s3_region = "us-east-1"
 s3_objects_path = "s3://bucket/path/"
+
+remote_restore = true

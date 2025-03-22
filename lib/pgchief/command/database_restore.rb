@@ -17,7 +17,7 @@ module Pgchief
         @filename = params.last
         raise Pgchief::Errors::DatabaseMissingError unless db_exists?
 
-        download! if configured?
+        download! if Pgchief::Config.remote_restore
         restore!
 
         "Database '#{database}' restored from #{filename}"

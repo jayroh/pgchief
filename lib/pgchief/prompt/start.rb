@@ -21,7 +21,7 @@ module Pgchief
       private
 
       def manage_config!
-        Pgchief::Config.load_config!
+        Pgchief::Config.load_config!(params.first)
         Pgchief::Config.set_up_file_structure!
       end
     end

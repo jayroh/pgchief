@@ -38,6 +38,16 @@ pgchief --init
 # export DATABASE_URL=postgresql://postgres:password@postgres.local:5432
 
 pgchief
+
+# Full usage:
+
+$ pgchief --help
+Options:
+  -h, --help            Print usage
+  -i, --init            Initialize the TOML configuration file
+      --remote-backup   Backup a database to a remote location
+      --remote-restore  Restore a database from a remote backup
+  -v, --version         Show the version
 ```
 
 ## Config
@@ -53,8 +63,19 @@ backup_dir = "~/.pgchief/backups"
 
 # ** OPTIONAL **
 
-# Location of encrypted database connection strings
-# credentials_file = "~/.pgchief/credentials"
+# Location of saved database connection strings
+# credentials_file = "~/.config/pgchief/credentials"
+
+# S3 config
+# ---------
+# s3_key = ""
+# s3_secret = ""
+# s3_region = "us-east-1"
+# s3_objects_path = "s3://bucket-name/database-backups/"
+
+# Backup and restore from remote locations?
+# remote_restore = false # default: false
+# remote_backup = false  # default: false
 ```
 
 Note:

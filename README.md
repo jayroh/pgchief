@@ -78,10 +78,16 @@ backup_dir = "~/.pgchief/backups"
 # remote_backup = false  # default: false
 ```
 
-Note:
+> [!Note]
+> Prompts accept both `↑` and `↓` arrows, as well as `j` and `k`.
+> Pressing the `esc` key at any point amidst a prompt will exit out of the
+> program.
 
-1. Prompts accept both `↑` and `↓` arrows, as well as `j` and `k`.
-2. Pressing the `esc` key at any point amidst a prompt will exit out of the program.
+> [!IMPORTANT]
+> Backup files must be named starting with `[Database Name]-` in order for the
+> file(s) to be found for restoration. Eg: A database named
+> `project_production` that has backups named `project_production-20250325.tar`
+> will be picked up and given the option to restore.
 
 ## Development of the gem
 

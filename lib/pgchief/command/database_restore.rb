@@ -38,7 +38,7 @@ module Pgchief
       end
 
       def restore!
-        `pg_restore --clean --no-owner --dbname=#{Pgchief::Config.pgurl}/#{database} #{local_location}`
+        `pg_restore --clean --if-exists --no-owner --dbname=#{Pgchief::Config.pgurl}/#{database} #{local_location}`
       end
 
       def db_exists?

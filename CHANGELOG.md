@@ -11,6 +11,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Changes
 
+* Update restore command to only act on objects `--if-exists` (if they exist)
+
 ### Fixes
 
 ## [0.5.4]

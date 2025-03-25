@@ -5,7 +5,7 @@ module Pgchief
     # Class to prompt for which database to backup
     class BackupDatabase < Base
       def call
-        database = prompt.select("Which database needs backing up?", Pgchief::Database.all)
+        database = prompt.select('Which database needs backing up?', Pgchief::Database.all)
         result   = Pgchief::Command::DatabaseBackup.call(database)
 
         prompt.say result

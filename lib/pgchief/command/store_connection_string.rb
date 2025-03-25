@@ -15,7 +15,7 @@ module Pgchief
       end
 
       def call
-        File.open(Config.credentials_file, "a") do |file|
+        File.open(Config.credentials_file, 'a') do |file|
           file.puts @connection_string
         end
       end

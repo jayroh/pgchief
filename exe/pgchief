@@ -5,7 +5,7 @@
 libdir = "#{__dir__}/../lib"
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
-require "pgchief"
+require 'pgchief'
 
 cli = Pgchief::Cli.new
 cli.parse(ARGV)

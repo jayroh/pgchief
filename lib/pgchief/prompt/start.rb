@@ -8,14 +8,14 @@ module Pgchief
         manage_config!
 
         result = prompt.select(
-          "Welcome! How can I help?",
+          'Welcome! How can I help?',
           [
-            "Database management",
-            "User management"
+            'Database management',
+            'User management'
           ]
         )
 
-        klassify("prompt", result).call
+        klassify('prompt', result).call
       end
 
       private

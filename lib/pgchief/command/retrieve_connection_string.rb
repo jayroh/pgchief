@@ -17,7 +17,7 @@ module Pgchief
           @connection_string = line if regex.match?(line)
         end
 
-        @connection_string.nil? ? "No connection string found" : @connection_string
+        @connection_string.nil? ? 'No connection string found' : @connection_string
       end
 
       private

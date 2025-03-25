@@ -6,14 +6,14 @@ module Pgchief
     class DatabaseManagement < Base
       def call
         prompt = TTY::Prompt.new
-        result = prompt.select("Database management", [
-                                 "Create database",
-                                 "Drop database",
-                                 "Database List",
-                                 "Backup database",
-                                 "Restore database"
+        result = prompt.select('Database management', [
+                                 'Create database',
+                                 'Drop database',
+                                 'Database List',
+                                 'Backup database',
+                                 'Restore database'
                                ])
-        scope = result == "Database List" ? "command" : "prompt"
+        scope = result == 'Database List' ? 'command' : 'prompt'
 
         klassify(scope, result).call
       end

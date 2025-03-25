@@ -20,7 +20,7 @@ module Pgchief
 
       def klassify(scope, words)
         Object.const_get([
-          "Pgchief", "::", scope.capitalize, "::",
+          'Pgchief', '::', scope.capitalize, '::',
           words.split.map(&:capitalize)
         ].flatten.join)
       end
@@ -33,8 +33,8 @@ module Pgchief
       def prompt
         @prompt ||= TTY::Prompt.new.tap do |p|
           p.on(:keypress) do |event|
-            p.trigger(:keydown) if event.value == "j"
-            p.trigger(:keyup) if event.value == "k"
+            p.trigger(:keydown) if event.value == 'j'
+            p.trigger(:keyup) if event.value == 'k'
           end
 
           p.on(:keyescape) do

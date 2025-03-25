@@ -48,7 +48,7 @@ module Pgchief
               AND datname NOT IN ('postgres', 'template1', 'template0')
           SQL
 
-          results.map { |row| row["datname"] }
+          results.map { |row| row['datname'] }
         end
       end
     end

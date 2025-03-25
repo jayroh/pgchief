@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "forwardable"
+require 'forwardable'
 
 module Pgchief
   module Command
@@ -39,7 +39,7 @@ module Pgchief
       end
 
       def check_backup!
-        raise Pgchief::Errors::BackupError, "Backup file has 0 bytes" unless File.size?(local_location)
+        raise Pgchief::Errors::BackupError, 'Backup file has 0 bytes' unless File.size?(local_location)
       end
 
       def db_exists?
@@ -53,7 +53,7 @@ module Pgchief
 
       def local_location
         @local_location ||= begin
-          timestamp = Time.now.strftime("%Y%m%d%H%M%S")
+          timestamp = Time.now.strftime('%Y%m%d%H%M%S')
           "#{Pgchief::Config.backup_dir}#{database}-#{timestamp}.dump"
         end
       end

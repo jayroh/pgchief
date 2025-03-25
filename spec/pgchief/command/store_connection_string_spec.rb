@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require 'spec_helper'
 
 class CredentialsFile
-  NAME = "credentials_file"
+  NAME = 'credentials_file'
 
   def self.has?(line)
     new.has?(line)
@@ -21,7 +21,7 @@ class CredentialsFile
 end
 
 RSpec.describe Pgchief::Command::StoreConnectionString do
-  describe "#call" do
+  describe '#call' do
     around do |example|
       Pgchief::Config.credentials_file = CredentialsFile::NAME
       example.run
@@ -29,8 +29,8 @@ RSpec.describe Pgchief::Command::StoreConnectionString do
       Pgchief::Config.credentials_file = nil
     end
 
-    it "stores connection string" do
-      connection_string = "postgresql://username:pass@localhost:5432"
+    it 'stores connection string' do
+      connection_string = 'postgresql://username:pass@localhost:5432'
 
       described_class.call(connection_string)
       result = CredentialsFile.has?(connection_string)

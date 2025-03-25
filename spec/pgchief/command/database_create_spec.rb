@@ -6,17 +6,17 @@ RSpec.describe Pgchief::Command::DatabaseCreate do
     delete_database!
   end
 
-  let(:database) { "test_db" }
+  let(:database) { 'test_db' }
 
-  describe ".call" do
-    it "creates a new database" do
+  describe '.call' do
+    it 'creates a new database' do
       result = described_class.call(database)
 
       expect(result).to eq("Database '#{database}' created successfully!")
       expect(databases).to include(database)
     end
 
-    it "raises error if a database already exists" do
+    it 'raises error if a database already exists' do
       described_class.call(database)
 
       expect do
@@ -27,8 +27,8 @@ RSpec.describe Pgchief::Command::DatabaseCreate do
 
   def databases
     @databases ||= conn
-                   .exec("SELECT datname FROM pg_database")
-                   .map { |row| row["datname"] }
+                   .exec('SELECT datname FROM pg_database')
+                   .map { |row| row['datname'] }
   end
 
   def delete_database!

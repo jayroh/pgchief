@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Pgchief::Command::DatabaseDrop do
-  let(:database) { "test_db" }
+  let(:database) { 'test_db' }
 
-  describe ".call" do
-    context "when the database exists" do
-      it "drops an existing database" do
+  describe '.call' do
+    context 'when the database exists' do
+      it 'drops an existing database' do
         create_database!
 
         result = described_class.call(database)
@@ -14,7 +14,7 @@ RSpec.describe Pgchief::Command::DatabaseDrop do
         expect(databases).not_to include(database)
       end
 
-      it "raises error if a database does not exist" do
+      it 'raises error if a database does not exist' do
         expect do
           described_class.call(database)
         end.to raise_error(Pgchief::Errors::DatabaseMissingError)
@@ -28,8 +28,8 @@ RSpec.describe Pgchief::Command::DatabaseDrop do
 
   def databases
     @databases ||= conn
-                   .exec("SELECT datname FROM pg_database")
-                   .map { |row| row["datname"] }
+                   .exec('SELECT datname FROM pg_database')
+                   .map { |row| row['datname'] }
   end
 
   def conn

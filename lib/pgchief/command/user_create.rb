@@ -44,7 +44,7 @@ module Pgchief
       end
 
       def user_options
-        USER_OPTIONS.join(" ")
+        USER_OPTIONS.join(' ')
       end
 
       def connection_string

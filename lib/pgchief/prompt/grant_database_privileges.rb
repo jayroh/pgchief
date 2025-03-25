@@ -15,11 +15,11 @@ module Pgchief
       end
 
       def select_user
-        prompt.select("Select user to update:", Pgchief::User.all)
+        prompt.select('Select user to update:', Pgchief::User.all)
       end
 
       def ask_for_password
-        prompt.mask("Password:")
+        prompt.mask('Password:')
       end
     end
   end

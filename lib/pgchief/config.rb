@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "toml-rb"
+require 'toml-rb'
 
 module Pgchief
   # Class to store configuration settings
@@ -29,11 +29,11 @@ module Pgchief
         self.s3_secret        = config[:s3_secret]
         self.s3_region        = config[:s3_region]
         self.s3_objects_path  = config[:s3_objects_path] || config[:s3_path_prefix]
-        self.remote_restore   = params[:"remote-restore"] == true ||
-                                params[:"local-restore"] == false ||
+        self.remote_restore   = params[:'remote-restore'] == true ||
+                                params[:'local-restore'] == false ||
                                 config[:remote_restore]
-        self.remote_backup    = params[:"remote-backup"]  == true ||
-                                params[:"local-backup"] == false ||
+        self.remote_backup    = params[:'remote-backup']  == true ||
+                                params[:'local-backup'] == false ||
                                 config[:remote_backup]
       rescue Errno::ENOENT
         puts config_missing_error(toml_file)
@@ -44,19 +44,19 @@ module Pgchief
       end
 
       def pgurl
-        ENV.fetch("DATABASE_URL", @pgurl)
+        ENV.fetch('DATABASE_URL', @pgurl)
       end
 
       def backup_dir=(value)
-        @backup_dir = value ? "#{value.chomp("/")}/".gsub("~", Dir.home) : "/tmp/"
+        @backup_dir = value ? "#{value.chomp('/')}/".gsub('~', Dir.home) : '/tmp/'
       end
 
       def s3_objects_path=(value)
-        @s3_objects_path = value ? "#{value.chomp("/")}/" : nil
+        @s3_objects_path = value ? "#{value.chomp('/')}/" : nil
       end
 
       def credentials_file=(value)
-        @credentials_file = value&.gsub("~", Dir.home)
+        @credentials_file = value&.gsub('~', Dir.home)
       end
 
       def set_up_file_structure!
@@ -70,7 +70,7 @@ module Pgchief
 
       def config_missing_error(toml_file)
         "You must create a config file at #{toml_file}.\n" \
-          "run `pgchief --init` to create it."
+          'run `pgchief --init` to create it.'
       end
     end
   end

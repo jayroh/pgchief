@@ -19,7 +19,7 @@ module Pgchief
           store_credentials!
         end
 
-        "Privileges granted to #{username} on #{@databases.join(", ")}"
+        "Privileges granted to #{username} on #{@databases.join(', ')}"
       end
 
       private

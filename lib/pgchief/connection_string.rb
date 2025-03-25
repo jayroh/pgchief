@@ -9,7 +9,7 @@ module Pgchief
       :?(?<password>[^@]*)?
       @?(?<host>[^:]*)?
       :?(?<port>\d+)?
-      /?(?<database>[^\?]*)?
+      /?(?<database>[^?]*)?
       \z}
 
     attr_reader :database_url
@@ -39,19 +39,19 @@ module Pgchief
     end
 
     def username
-      @username || ("" if matched[:host].empty? && !matched[:username].empty?) || matched[:username] || ""
+      @username || ('' if matched[:host].empty? && !matched[:username].empty?) || matched[:username] || ''
     end
 
     def password
-      @password || matched[:password] || ""
+      @password || matched[:password] || ''
     end
 
     def port
-      @port || matched[:port] || "5432"
+      @port || matched[:port] || '5432'
     end
 
     def database
-      @database || matched[:database] || ""
+      @database || matched[:database] || ''
     end
 
     private

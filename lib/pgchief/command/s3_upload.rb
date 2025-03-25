@@ -15,9 +15,9 @@ module Pgchief
         s3.client.put_object(
           bucket: s3.bucket,
           key: "#{s3.path}#{file_name}",
-          body: File.open(local_location, "rb"),
-          acl: "private",
-          content_type: "application/octet-stream"
+          body: File.open(local_location, 'rb'),
+          acl: 'private',
+          content_type: 'application/octet-stream'
         )
       end
 

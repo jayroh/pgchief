@@ -5,7 +5,7 @@ module Pgchief
     # Class to ask for database name, in order to create it
     class CreateDatabase < Base
       def call
-        database = prompt.ask("Database name:")
+        database = prompt.ask('Database name:')
         result   = Pgchief::Command::DatabaseCreate.call(database)
 
         prompt.say result

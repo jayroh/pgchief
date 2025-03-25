@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "fileutils"
+require 'fileutils'
 
 module Pgchief
   module Command
@@ -13,7 +13,7 @@ module Pgchief
       def call(dir: "#{Dir.home}/.config/pgchief")
         return if File.exist?("#{dir}/config.toml")
 
-        template = File.join(__dir__, "..", "..", "..", "config", "pgchief.toml")
+        template = File.join(__dir__, '..', '..', '..', 'config', 'pgchief.toml')
         FileUtils.mkdir_p(dir)
         FileUtils.cp(template, "#{dir}/config.toml")
 

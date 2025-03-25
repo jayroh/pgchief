@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require_relative "lib/pgchief/version"
+require_relative 'lib/pgchief/version'
 
 Gem::Specification.new do |spec|
-  spec.name = "pgchief"
+  spec.name = 'pgchief'
   spec.version = Pgchief::VERSION
-  spec.authors = ["Joel Oliveira"]
-  spec.email = ["joel.oliveira@gmail.com"]
+  spec.authors = ['Joel Oliveira']
+  spec.email = ['joel.oliveira@gmail.com']
 
-  spec.summary = "A simple ruby script to manage postgresql databases and users"
-  spec.homepage = "https://github.com/jayroh/pgchief"
-  spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.summary = 'A simple ruby script to manage postgresql databases and users'
+  spec.homepage = 'https://github.com/jayroh/pgchief'
+  spec.license = 'MIT'
+  spec.required_ruby_version = '>= 3.0.0'
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/jayroh/pgchief"
-  spec.metadata["changelog_uri"] = "https://github.com/jayroh/pgchief/blob/main/CHANGELOG.md"
-  spec.metadata["rubygems_mfa_required"] = "true"
+  spec.metadata['homepage_uri'] = spec.homepage
+  spec.metadata['source_code_uri'] = 'https://github.com/jayroh/pgchief'
+  spec.metadata['changelog_uri'] = 'https://github.com/jayroh/pgchief/blob/main/CHANGELOG.md'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -28,16 +28,16 @@ Gem::Specification.new do |spec|
         f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile])
     end
   end
-  spec.bindir = "exe"
+  spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "aws-sdk-s3"
-  spec.add_dependency "pg"
-  spec.add_dependency "toml-rb"
-  spec.add_dependency "tty-option"
-  spec.add_dependency "tty-prompt"
+  spec.add_dependency 'aws-sdk-s3'
+  spec.add_dependency 'pg'
+  spec.add_dependency 'toml-rb'
+  spec.add_dependency 'tty-option'
+  spec.add_dependency 'tty-prompt'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

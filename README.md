@@ -50,6 +50,11 @@ Options:
   -v, --version         Show the version
 ```
 
+> [!Note]
+> Prompts accept both `↑` and `↓` arrows, as well as `j` and `k`.
+> Pressing the `esc` key at any point amidst a prompt will exit out of the
+> program.
+
 ## Config
 
 Format of `~/.config/pgchief/config.toml`
@@ -77,11 +82,6 @@ backup_dir = "~/.pgchief/backups"
 # remote_restore = false # default: false
 # remote_backup = false  # default: false
 ```
-
-> [!Note]
-> Prompts accept both `↑` and `↓` arrows, as well as `j` and `k`.
-> Pressing the `esc` key at any point amidst a prompt will exit out of the
-> program.
 
 > [!IMPORTANT]
 > Backup files must be named starting with `[Database Name]-` in order for the

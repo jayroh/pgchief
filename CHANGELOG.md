@@ -15,6 +15,9 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Fixes
 
+* Fix method signature in `Database::Backups` - `remote` should be a kwarg and should
+  pass it along as such.
+
 ## [0.5.4]
 
 ### Additions

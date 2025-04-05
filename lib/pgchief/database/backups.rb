@@ -10,13 +10,13 @@ module Pgchief
 
       def_delegators :s3, :bucket, :path, :client
 
-      def self.for(database, remote)
-        new(database, remote).for
+      def self.for(database, remote:)
+        new(database, remote: remote).for
       end
 
       attr_reader :database, :remote
 
-      def initialize(database, remote)
+      def initialize(database, remote:)
         @database = database
         @remote = remote
       end

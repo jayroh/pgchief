@@ -22,9 +22,10 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
-* Improve CLI usability with --version and --help flags.
-* Adds --remote-backup and --remote-restore CLI options.
-* Modifies DatabaseRestore and prompt flows to conditionally operate on remote backups.
+* Improve CLI usability with `--version` and `--help` flags.
+* Adds `--remote-backup` and `--remote-restore` CLI options.
+* Modifies `DatabaseRestore` and prompt flows to conditionally operate on remote backups.
+* Adds `--restore database_name` option to cli to quickly restore latest backup for a provided database.
 
 ### Changes
 

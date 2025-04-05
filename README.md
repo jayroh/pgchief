@@ -43,11 +43,12 @@ pgchief
 
 $ pgchief --help
 Options:
-  -h, --help            Print usage
-  -i, --init            Initialize the TOML configuration file
-      --remote-backup   Backup a database to a remote location
-      --remote-restore  Restore a database from a remote backup
-  -v, --version         Show the version
+  -h, --help            Print usage.
+  -i, --init            Initialize the TOML configuration file.
+      --remote-backup   Backup a database to a remote location.
+      --remote-restore  Restore a database from a remote backup.
+  -r, --restore string  Quickly restore specific database. Pass name of db.
+  -v, --version         Show the version.
 ```
 
 > [!Note]
@@ -163,6 +164,6 @@ Give "rando-username" access to database(s):
 * [x] Restore local database
 * [x] Restore remote database @ S3
 * [ ] Quickly back up via command line option
-* [ ] Quickly restore via command line option
+* [x] Quickly restore via command line option
 * [ ] Task for inclusion in a Rakefile
 * [ ] Support environment variables in config

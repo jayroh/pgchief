@@ -36,6 +36,7 @@ require 'pgchief/command/database_drop'
 require 'pgchief/command/database_list'
 require 'pgchief/command/database_privileges_grant'
 require 'pgchief/command/database_restore'
+require 'pgchief/command/quick_restore'
 require 'pgchief/command/retrieve_connection_string'
 require 'pgchief/command/s3_upload'
 require 'pgchief/command/store_connection_string'
@@ -48,8 +49,19 @@ module Pgchief
 
   module Errors
     class UserExistsError < Error; end
-    class DatabaseExistsError < Error; end
-    class DatabaseMissingError < Error; end
+
     class BackupError < Error; end
+
+    class DatabaseExistsError < Error
+      def message
+        'The database already exists.'
+      end
+    end
+
+    class DatabaseMissingError < Error
+      def message
+        'The database requested does not exist.'
+      end
+    end
   end
 end

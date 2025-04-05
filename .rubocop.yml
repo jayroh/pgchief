@@ -6,3 +6,8 @@ plugins:
 
 AllCops:
   NewCops: enable
+
+Style/Documentation:
+  Exclude:
+    - 'lib/pgchief.rb'
+    - 'spec/**/*.rb'

@@ -10,10 +10,11 @@ RSpec.describe Pgchief::Command::DatabaseBackup do
 
   context 'when the database exists' do
     around do |example|
-      original_db_url = ENV['DATABASE_URL']
+      original_db_url = ENV.fetch('DATABASE_URL', nil)
       Pgchief::Config.backup_dir = '/tmp'
       Pgchief::Config.s3_key     = nil
       Pgchief::Config.s3_secret  = nil
+      Pgchief::Command::DatabaseDrop.new('backup_test').call
       Pgchief::Command::DatabaseCreate.new('backup_test').call
 
       example.run

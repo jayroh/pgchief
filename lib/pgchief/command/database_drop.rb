@@ -8,10 +8,10 @@ module Pgchief
 
       def call
         @database = params.first
-        raise Pgchief::Errors::DatabaseMissingError unless db_exists?
+
+        return "Database '#{database}' does not exist." unless db_exists?
 
         conn.exec("DROP DATABASE #{database}")
-
         "Database '#{database}' dropped successfully!"
       rescue PG::Error => e
         "Error: #{e.message}"

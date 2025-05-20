@@ -14,10 +14,11 @@ RSpec.describe Pgchief::Command::DatabaseDrop do
         expect(databases).not_to include(database)
       end
 
-      it 'raises error if a database does not exist' do
-        expect do
-          described_class.call(database)
-        end.to raise_error(Pgchief::Errors::DatabaseMissingError)
+      it 'reports that the database does not exist' do
+        result = described_class.call(database)
+
+        expect(result).to eq("Database '#{database}' does not exist.")
+        expect(databases).not_to include(database)
       end
     end
   end

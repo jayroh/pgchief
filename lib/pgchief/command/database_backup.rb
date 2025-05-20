@@ -35,7 +35,11 @@ module Pgchief
       private
 
       def backup!
-        `pg_dump -Fc #{Pgchief::Config.pgurl}/#{database} -f #{local_location}`
+        # if the provided `pgurl` already has a database at the tail
+        # end of the string, remove it. We'll explicitly add it below.
+        pgurl = Pgchief::Config.pgurl.gsub(%r{/[a-zA-Z\-_]*$}, '')
+
+        `pg_dump -Fc #{pgurl}/#{database} -f #{local_location}`
       end
 
       def check_backup!

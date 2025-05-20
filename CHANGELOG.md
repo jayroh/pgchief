@@ -17,6 +17,9 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 * Fix method signature in `Database::Backups` - `remote` should be a kwarg and should
   pass it along as such.
+* When backing up a database, we add the db name to the end of the pg connection string.
+  In cases where that DATABASE_URL already has the database name tacked on at the end,
+  make sure it's only there once.
 
 ## [0.5.4]
 

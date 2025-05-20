@@ -12,6 +12,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 ### Changes
 
 * Update restore command to only act on objects `--if-exists` (if they exist)
+* Allow for config to be set via ENV variables
+* Don't raise error when a database doesn't exist when a drop is attempted - just notify
 
 ### Fixes
 

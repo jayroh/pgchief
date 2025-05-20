@@ -56,7 +56,7 @@ Options:
 > Pressing the `esc` key at any point amidst a prompt will exit out of the
 > program.
 
-## Config
+## Config via File
 
 Format of `~/.config/pgchief/config.toml`
 
@@ -82,6 +82,22 @@ backup_dir = "~/.pgchief/backups"
 # Backup and restore from remote locations?
 # remote_restore = false # default: false
 # remote_backup = false  # default: false
+```
+
+### OR ... Config via Environment Variables
+
+The following environment variables will be picked up in the absence of a config
+file.
+
+```env
+# Required
+DATABASE_URL
+
+# Optional
+AWS_ACCESS_KEY_ID       or   AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY   or   AWS_SECRET_KEY
+AWS_DEFAULT_REGION      or   AWS_REGION
+S3_BACKUPS_PATH
 ```
 
 > [!IMPORTANT]

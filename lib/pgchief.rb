@@ -52,6 +52,8 @@ module Pgchief
 
     class BackupError < Error; end
 
+    class ConfigMissingError < Error; end
+
     class DatabaseExistsError < Error
       def message
         'The database already exists.'

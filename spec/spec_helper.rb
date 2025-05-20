@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'dotenv/load'
+require 'pry'
 
 # *********************
 # * Do NOT move this! *
@@ -12,7 +13,6 @@ require 'dotenv/load'
 ENV['DATABASE_URL'] = ENV.fetch('TEST_DATABASE_URL', 'postgres://localhost')
 
 require 'pgchief'
-require 'pry'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

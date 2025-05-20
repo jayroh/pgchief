@@ -11,3 +11,15 @@ Style/Documentation:
   Exclude:
     - 'lib/pgchief.rb'
     - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/pgchief/config.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/pgchief/config.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/pgchief/config.rb'

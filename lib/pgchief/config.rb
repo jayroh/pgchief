@@ -5,6 +5,8 @@ require 'toml-rb'
 module Pgchief
   # Class to store configuration settings
   class Config
+    DEFAULT_CONFIG = "#{Dir.home}/.config/pgchief/config.toml".freeze
+
     class << self
       attr_accessor \
         :s3_key,
@@ -18,10 +20,18 @@ module Pgchief
       attr_reader \
         :s3_objects_path,
         :backup_dir,
-        :credentials_file
+        :credentials_file,
+        :toml_file
 
-      def load_config!(params, toml_file = "#{Dir.home}/.config/pgchief/config.toml") # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-        config                = TomlRB.load_file(toml_file, symbolize_keys: true)
+      # explicitly define getter so that pgurl is always available if
+      # load_config! is not run.
+      def pgurl
+        ENV.fetch('DATABASE_URL', ENV.fetch('DB_URL', @pgurl))
+      end
+
+      def load_config!(params, toml_file = DEFAULT_CONFIG)
+        @toml_file            = toml_file
+        config                = toml_config || env_config
         self.backup_dir       = config[:backup_dir]
         self.credentials_file = config[:credentials_file]
         self.pgurl            = config[:pgurl]
@@ -35,16 +45,12 @@ module Pgchief
         self.remote_backup    = params[:'remote-backup']  == true ||
                                 params[:'local-backup'] == false ||
                                 config[:remote_backup]
-      rescue Errno::ENOENT
+      rescue Pgchief::Errors::ConfigMissingError
         puts config_missing_error(toml_file)
       end
 
       def s3
         @s3 ||= Pgchief::Config::S3.new(self)
-      end
-
-      def pgurl
-        ENV.fetch('DATABASE_URL', @pgurl)
       end
 
       def backup_dir=(value)
@@ -68,8 +74,27 @@ module Pgchief
 
       private
 
+      def toml_config
+        return unless File.exist?(toml_file.to_s)
+
+        TomlRB.load_file(toml_file, symbolize_keys: true)
+      end
+
+      def env_config
+        pgurl = ENV.fetch('DATABASE_URL', ENV.fetch('DB_URL', nil))
+        raise Pgchief::Errors::ConfigMissingError if pgurl.nil?
+
+        {
+          pgurl: pgurl,
+          s3_key: ENV.fetch('AWS_ACCESS_KEY_ID', ENV.fetch('AWS_ACCESS_KEY', nil)),
+          s3_secret: ENV.fetch('AWS_SECRET_ACCESS_KEY', ENV.fetch('AWS_SECRET_KEY', nil)),
+          s3_region: ENV.fetch('AWS_DEFAULT_REGION', ENV.fetch('AWS_REGION', nil)),
+          s3_objects_path: ENV.fetch('S3_BACKUPS_PATH', nil)
+        }
+      end
+
       def config_missing_error(toml_file)
-        "You must create a config file at #{toml_file}.\n" \
+        "You must create a config file at #{toml_file || DEFAULT_CONFIG}.\n" \
           'run `pgchief --init` to create it.'
       end
     end

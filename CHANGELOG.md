@@ -9,6 +9,14 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+### Changes
+
+### Fixes
+
+## [0.6.0]
+
+### Additions
+
 * Adds `--backup database_name` option to cli to quickly backup a provided database.
 
 ### Changes

@@ -43,6 +43,7 @@ pgchief
 
 $ pgchief --help
 Options:
+  -b, --backup string   Quickly backup specific database. Pass name of db.
   -h, --help            Print usage.
   -i, --init            Initialize the TOML configuration file.
       --remote-backup   Backup a database to a remote location.
@@ -179,7 +180,7 @@ Give "rando-username" access to database(s):
 * [x] Back up database to S3
 * [x] Restore local database
 * [x] Restore remote database @ S3
-* [ ] Quickly back up via command line option
+* [x] Quickly back up via command line option
 * [x] Quickly restore via command line option
 * [ ] Task for inclusion in a Rakefile
-* [ ] Support environment variables in config
+* [x] Support environment variables in config

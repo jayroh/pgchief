@@ -36,6 +36,13 @@ module Pgchief
       desc 'Quickly restore specific database. Pass name of db.'
     end
 
+    option :backup do
+      short '-b'
+      long '--backup string'
+      arity 1
+      desc 'Quickly backup specific database. Pass name of db.'
+    end
+
     flag :help do
       short '-h'
       long '--help'
@@ -51,6 +58,8 @@ module Pgchief
         puts Pgchief::VERSION
       elsif params[:restore]
         puts Pgchief::Command::QuickRestore.call(params, params[:restore])
+      elsif params[:backup]
+        puts Pgchief::Command::QuickBackup.call(params, params[:backup])
       else
         Pgchief::Prompt::Start.call(params)
       end

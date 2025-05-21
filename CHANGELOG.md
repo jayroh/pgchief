@@ -9,6 +9,8 @@ and this project will try its best to adhere to [Semantic Versioning](https://se
 
 ### Additions
 
+* Adds `--backup database_name` option to cli to quickly backup a provided database.
+
 ### Changes
 
 * Update restore command to only act on objects `--if-exists` (if they exist)

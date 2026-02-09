@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pgchief/validators'
+
 module Pgchief
   module Command
     # Command object to drop a database
@@ -7,7 +9,7 @@ module Pgchief
       attr_reader :database
 
       def call
-        @database = params.first
+        @database = Pgchief::Validators.sanitize_identifier(params.first)
 
         return "Database '#{database}' does not exist." unless db_exists?
 
@@ -22,8 +24,8 @@ module Pgchief
       private
 
       def db_exists?
-        query = "SELECT 1 FROM pg_database WHERE datname = '#{database}'"
-        conn.exec(query).any?
+        query = 'SELECT 1 FROM pg_database WHERE datname = $1'
+        conn.exec_params(query, [database]).any?
       end
     end
   end

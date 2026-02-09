@@ -44,6 +44,7 @@ require 'pgchief/command/store_connection_string'
 require 'pgchief/command/user_create'
 require 'pgchief/command/user_drop'
 require 'pgchief/command/user_list'
+require 'pgchief/validators'
 
 module Pgchief
   class Error < StandardError; end
@@ -66,5 +67,9 @@ module Pgchief
         'The database requested does not exist.'
       end
     end
+
+    class InvalidIdentifierError < Error; end
+
+    class InvalidFilePathError < Error; end
   end
 end

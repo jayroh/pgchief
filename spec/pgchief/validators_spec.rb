@@ -35,7 +35,7 @@ RSpec.describe Pgchief::Validators do
   describe '.sanitize_identifier' do
     it 'raises error for invalid identifiers' do
       expect { described_class.sanitize_identifier('bad;name') }
-        .to raise_error(Pgchief::InvalidIdentifierError, /Invalid database\/user identifier/)
+        .to raise_error(Pgchief::Errors::InvalidIdentifierError, /Invalid database\/user identifier/)
     end
 
     it 'returns the identifier for valid names' do

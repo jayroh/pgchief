@@ -67,5 +67,9 @@ module Pgchief
         'The database requested does not exist.'
       end
     end
+
+    class InvalidIdentifierError < Error; end
+
+    class InvalidFilePathError < Error; end
   end
 end

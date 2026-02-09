@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 module Pgchief
-  class InvalidIdentifierError < StandardError; end
-  class InvalidFilePathError < StandardError; end
-
   module Validators
     # PostgreSQL identifier naming rules:
     # - Must start with letter or underscore
@@ -23,7 +20,7 @@ module Pgchief
 
     def self.sanitize_identifier(identifier)
       unless valid_identifier?(identifier)
-        raise InvalidIdentifierError, "Invalid database/user identifier: #{identifier.inspect}"
+        raise Errors::InvalidIdentifierError, "Invalid database/user identifier: #{identifier.inspect}"
       end
       identifier
     end
@@ -38,7 +35,7 @@ module Pgchief
 
     def self.sanitize_password(password)
       unless valid_password?(password)
-        raise InvalidIdentifierError, "Invalid password: must be 1-#{PASSWORD_MAX_LENGTH} characters"
+        raise Errors::InvalidIdentifierError, "Invalid password: must be 1-#{PASSWORD_MAX_LENGTH} characters"
       end
       password
     end
@@ -56,7 +53,7 @@ module Pgchief
 
     def self.sanitize_file_path(path)
       unless valid_file_path?(path)
-        raise InvalidFilePathError, "Invalid file path: #{path.inspect}"
+        raise Errors::InvalidFilePathError, "Invalid file path: #{path.inspect}"
       end
       # Expand to absolute path for safety
       File.expand_path(path)

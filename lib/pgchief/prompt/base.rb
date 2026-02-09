@@ -22,7 +22,7 @@ module Pgchief
         Object.const_get([
           'Pgchief', '::', scope.capitalize, '::',
           words.split.map(&:capitalize)
-        ].flatten.join)
+        ].join)
       end
 
       def yes_or_no(question, yes: nil, no: nil) # rubocop:disable Naming/MethodParameterName

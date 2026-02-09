@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'forwardable'
+require 'open3'
+require 'pgchief/validators'
 
 module Pgchief
   module Command
@@ -14,7 +16,7 @@ module Pgchief
 
       def initialize(*params)
         super
-        @database = params.first
+        @database = Pgchief::Validators.sanitize_identifier(params.first)
         @uploader = Pgchief::Command::S3Upload.new(local_location)
       end
 
@@ -39,7 +41,16 @@ module Pgchief
         # end of the string, remove it. We'll explicitly add it below.
         pgurl = Pgchief::Config.pgurl.gsub(%r{/[a-zA-Z\-_]*$}, '')
 
-        `pg_dump -Fc #{pgurl}/#{database} -f #{local_location}`
+        stdout, stderr, status = Open3.capture3(
+          'pg_dump',
+          '--format=custom',
+          '--file', local_location,
+          "#{pgurl}/#{database}"
+        )
+
+        unless status.success?
+          raise Pgchief::Errors::BackupError, "pg_dump failed: #{stderr}"
+        end
       end
 
       def check_backup!
@@ -47,8 +58,8 @@ module Pgchief
       end
 
       def db_exists?
-        query = "SELECT 1 FROM pg_database WHERE datname = '#{database}'"
-        conn.exec(query).any?
+        query = 'SELECT 1 FROM pg_database WHERE datname = $1'
+        conn.exec_params(query, [database]).any?
       end
 
       def location
